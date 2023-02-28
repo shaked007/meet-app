@@ -1,18 +1,33 @@
 <template>
+<div  v-if="!$isMobile" class="flex-of-page"> 
 
-<h4 class="main-title"> טופס שילוח משימה</h4>
- <h6 class="sub-title"> מסך הבית </h6>
+
+   <div class="hero-section"> 
+    <div class="melel-container"> 
+
+<h1 class="main-title"> MeetApp</h1>
 <!-- <FormView  v-if="isFormView" />
 <ReportView :urlParams="urlParams" v-if="isReportView" /> -->
 
 <div class="links-flex">
-  <router-link v-ripple  class="report" to="fill-report">למילוי דוח</router-link>
-  <router-link class="history" to="reports"> להיסטוריית דוחות</router-link>
+    <router-link v-ripple  class="report" to="fill-report">להזמנת כנס </router-link>
+  <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
+
    </div>
-   <div v-if="!$isMobile" class="print-icon-container"> 
-   <router-link class="printer-link" to="/print-view"><v-icon x-large   size="60">  mdi mdi-printer</v-icon></router-link>
+</div>
+</div>
+</div>
+<div v-if="$isMobile" class="mobile-layout-container">
+   <div class="melel-container"> 
+
+<h1 class="main-title"> MeetApp</h1>
+
+    <router-link v-ripple  class="report" to="fill-report"><div class="icon-and-text-flex"><v-icon size="100">mdi-calendar-plus </v-icon>להזמנת כנס </div></router-link>
+  <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
+
+</div>
    </div>
-<img :src="require('../assets/383zameret.png')"> 
+<!-- <img :src="require('../assets/383zameret.png')">  -->
 </template>
 
 <script>
@@ -60,6 +75,119 @@ export default {
 </script>
 
 <style scoped>
+
+ @media (max-width: 480px) {
+      .mobile-layout-container{
+        position: relative;
+      background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.7) 20%,
+ rgba(0, 0, 0, 0.7) 20%
+  ), url(@/assets/kenes3.jpeg) !important;
+    background-position: 40% 50% !important;
+  background-size: cover !important;
+  height: 100%;
+  background-repeat: no-repeat !important;
+}
+.melel-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 30px;
+  position: relative !important;
+ 
+}
+.icon-and-text-flex{
+  display: flex;
+  height: 190px;
+  justify-content: space-evenly;
+  transform: translate(-18%,0);
+  width: 140px;
+  top: -40px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+.history{
+  display: inline-block;
+  background-color:white;
+  border-radius: 25px;
+  padding:0.5em 1em;
+    font-size: 4rem;
+
+  text-decoration: none;
+  color:rgba(24, 114, 150, 1) ;
+}
+.report{
+  display: block;
+  font-size: 4rem;
+  /* box-shadow: rgb(24, 114, 150) 0px 2px 4px 0px, rgb(24, 114, 150) 0px 2px 16px 0px; */
+
+  width: 250px;
+  height: 250px;
+  margin-bottom: 50px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  padding: 4em;
+  background-color:rgba(24, 114, 150, 1) ;
+}
+ .main-title{
+  position: relative;
+  letter-spacing: 6px;
+  text-align: center;
+  font-size: 10rem;
+  margin-top: 20px;
+  margin-bottom: 200px;
+  font-weight: 800;
+  color:white;
+}
+.main-title::before{
+    font-size: 2.8rem;
+    letter-spacing: 7px;
+    /* font-style: italic; */
+    position: absolute;
+    top:150%;
+    /* left: 3%; */
+  content:'קל לקבוע כנס רמטכ"ל'
+}
+ }
+ @media (min-width: 480px) {
+    .melel-container{
+  position: absolute;
+  height: 50%;
+  left: 55%;
+  transform: translate(-50%,0);
+  top: 15%;
+}
+.illustration-section{
+  width: 60%;
+  height: 100%;
+
+}
+.flex-of-page{
+  display: flex;
+  flex-direction: row;
+     background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.7) 20%,
+  rgba(24, 114, 150, 0.9)
+  ), url(@/assets/kenes3.jpeg) !important;
+  
+  background-position: 50% 50% !important;
+
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  justify-content: flex-end;
+   height: 100%;
+  width: 100%;
+}
+.hero-section{
+  
+  position: relative;
+  height: 100%;
+  width: 60%;
+}
 .printer-link{
   position: relative;
   top: 100%;
@@ -86,26 +214,42 @@ export default {
 .links-flex .report{
   color:white;
   display: inline-block;
-  background-color: rgba(128, 128, 128, 0.753);
-  border-radius: 20px;
+  background-color: rgb(24, 114, 150);
+  /* border-radius: 20px; */
+  transition: all 0.2s ease-in;
   padding:0.5em 1em;
   text-decoration:none;
 }
+.links-flex .report:hover{
+  box-shadow: rgb(24, 114, 150) 0px 2px 4px 0px, rgb(24, 114, 150) 0px 2px 16px 0px;
+  color: rgb(24, 114, 150) ;
+  background-color: white;
+ }
 .links-flex .history{
   color:white;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   display: inline-block;
   /* background-color: rgba(128, 128, 128, 0.753); */
-  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+  padding:0.5em 1em;
+  text-decoration:none;
+}
+.links-flex .history:hover{
+  color:white;
+  /* border: 1px solid grey; */
+  display: inline-block;
+  background-color: rgba(128, 128, 128, 0.473);
   padding:0.5em 1em;
   text-decoration:none;
 }
 .links-flex{
-  font-size: 20px;
-  margin-top: 40px;
+  font-size: 2rem;
+  /* margin-top: 40px; */
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  /* gap: 50px;
+  padding-right: 70px; */
+  justify-content: space-around;
 }
 img{
   position: absolute;
@@ -116,18 +260,27 @@ img{
   transform: translate(-50%,0);
 }
 .main-title{
+  position: relative;
+  letter-spacing: 6px;
   text-align: center;
-  font-size: 3rem;
+  font-size: 10rem;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
+  font-weight: 800;
   color:white;
 }
-.sub-title{
-  text-align: center;
-  color: rgba(255, 255, 255, 0.781);
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  font-weight: 400 !important;
-
+.main-title::before{
+    font-size: 2.5rem;
+    letter-spacing: 7px;
+    /* font-style: italic; */
+    position: absolute;
+    top:88%;
+    left: 3%;
+  content:'קל לקבוע כנס רמטכ"ל'
 }
+
+ 
+ }
+
+
 </style>

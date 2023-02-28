@@ -104,14 +104,11 @@ body,html{
    margin:calc() !important;
 }
 :root{
+  --main-clr :rgba(35 183 203, 86%);
   font-size: 16px;
 }
 .v-application{
-    background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9),
-    rgba(0,0,0, 0)
-  ), url(@/assets/car.jpg) !important;
+   
   
   background-position: 50% 50% !important;
 
@@ -120,26 +117,30 @@ body,html{
 
 }
 #app{
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9),
-    rgba(0,0,0, 0)
-  ), url(@/assets/car.jpg) !important;
-  
-
+  /* min-width: 480px; */
   background-position: 70% 50%;
 
   background-size: cover;
   background-repeat: no-repeat;
 }
-    @media (max-width: 391px) {
+ 
+
+ @media (max-width: 480px) {
         
-.label-alignment .v-selection-control{
-    align-items: flex-start !important;
+      :root{  --main-clr :rgba(35 183 203, 86%);
+
+        font-size:5px !important;
+      }
+ }
+@media (max-width: 1460px) {
+        
+        :root{  --main-clr :rgba(35 183 203, 86%);
+
+          font-size:14px;
+          
+        }
 
 }
-
-        }
         .v-label{
   text-align: right !important;
 }
