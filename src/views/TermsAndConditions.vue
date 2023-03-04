@@ -14,7 +14,7 @@
 <v-checkbox  required  class="checkboxes" size="3rem" label="המחשבים בכנס יהיו ברמת הסיווג של הכנס"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label='אין לפרט על חומרי מסווגים על הכנסים מטעמי ביטחון מידע'> </v-checkbox>
 <input class="finish-terms-button" :disabled="isSubmitValid" type="submit"   value="קראתי והבנתי" v-ripple>
-<router-link  class="route-back-btn" to="/">  חזור</router-link>
+<router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזור</router-link>
     </form>
 
 </div> 
