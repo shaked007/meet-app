@@ -34,24 +34,7 @@ export default {
 <style >
 
 
-@media print{
-  button{
-    display: none !important;
-  }
-   .printer-container{
-    
-        break-after:  always !important;
-    }
-  input{
-    color: black !important;
-  }
-  .q-field--dark .q-field__input, .q-field--dark .q-field__native, .q-field--dark .q-field__prefix, .q-field--dark .q-field__suffix {
-    color: black !important;
-}
-  *{
-    color:black !important;
-  }
-}
+
 .q-field--filled .q-field__control:after{
     height: 0px !important;
 }
@@ -93,6 +76,10 @@ export default {
   font-family: openSans;
   src: url(@/assets/OpenSansHebrew-Bold.ttf);
 }
+@font-face{  
+  font-family: secondary;
+  src: url(@/assets/FbElectronSans-Regular.woff);
+}
 
 body,html{
   font-family: openSans !important;
@@ -104,9 +91,9 @@ body,html{
    margin:calc() !important;
 }
 :root{
-  --main-clr :rgba(35 183 203, 86%);
-  font-size: 16px;
-}
+    --main-clr: rgba(24, 114, 150);
+    font-size: 16px;
+  }
 .v-application{
    
   
@@ -126,15 +113,32 @@ body,html{
  
 
  @media (max-width: 480px) {
+   .inputs-container .checkboxes .v-label{
+    font-size: 3.2rem;
+        color: black;
+
+} .inputs-container .checkboxes {
+    font-size: 3.2rem;
+        color: black;
+
+}
         
-      :root{  --main-clr :rgba(35 183 203, 86%);
+      :root{ 
 
         font-size:5px !important;
       }
  }
-@media (max-width: 1460px) {
-        
-        :root{  --main-clr :rgba(35 183 203, 86%);
+@media (min-width: 1460px) {
+         .inputs-container .checkboxes .v-label{
+    font-size: 1.5rem;
+        color: black;
+
+} .inputs-container .checkboxes {
+    font-size: 1.5rem;
+        color: black;
+
+}
+        :root{ 
 
           font-size:14px;
           

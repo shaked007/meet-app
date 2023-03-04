@@ -5,6 +5,7 @@ import FormView from '../views/FormView.vue'
 import ReportView from "../views/ReportView.vue"
 import PrintView from "../views/PrintView.vue"
 import PrintFinalView from "../views/PrintFinalView.vue"
+import TermsAndConditions  from "../views/TermsAndConditions.vue"
 
 const routes = [
   {
@@ -35,6 +36,13 @@ const routes = [
     name: 'print-final-view',
     component: PrintFinalView
   },
+  {
+    path: '/terms-and-conditions',
+    name: 'terms-and-conditions',
+    component: TermsAndConditions
+  },
+
+  
   
 
 ]

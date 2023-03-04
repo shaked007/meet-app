@@ -10,7 +10,7 @@
 <ReportView :urlParams="urlParams" v-if="isReportView" /> -->
 
 <div class="links-flex">
-    <router-link v-ripple  class="report" to="fill-report">להזמנת כנס </router-link>
+    <router-link v-ripple  class="report" to="/terms-and-conditions">להזמנת כנס </router-link>
   <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
 
    </div>
@@ -22,7 +22,7 @@
 
 <h1 class="main-title"> MeetApp</h1>
 
-    <router-link v-ripple  class="report" to="fill-report"><div class="icon-and-text-flex"><v-icon size="100">mdi-calendar-plus </v-icon>להזמנת כנס </div></router-link>
+    <router-link v-ripple  class="report" to="/terms-and-conditions"><div class="icon-and-text-flex"><v-icon size="100">mdi-calendar-plus </v-icon>להזמנת כנס </div></router-link>
   <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
 
 </div>
@@ -116,7 +116,7 @@ export default {
     font-size: 4rem;
 
   text-decoration: none;
-  color:rgba(24, 114, 150, 1) ;
+  color:var(--main-clr) ;
 }
 .report{
   display: block;
@@ -130,7 +130,7 @@ export default {
   color: white;
   text-decoration: none;
   padding: 4em;
-  background-color:rgba(24, 114, 150, 1) ;
+  background-color:var(--main-clr) ;
 }
  .main-title{
   position: relative;
@@ -171,7 +171,7 @@ export default {
      background: linear-gradient(
     to left,
     rgba(0, 0, 0, 0.7) 20%,
-  rgba(24, 114, 150, 0.9)
+  var(--main-clr)
   ), url(@/assets/kenes3.jpeg) !important;
   
   background-position: 50% 50% !important;
@@ -214,14 +214,14 @@ export default {
 .links-flex .report{
   color:white;
   display: inline-block;
-  background-color: rgb(24, 114, 150);
+  background-color: var(--main-clr);
   /* border-radius: 20px; */
   transition: all 0.2s ease-in;
   padding:0.5em 1em;
   text-decoration:none;
 }
 .links-flex .report:hover{
-  box-shadow: rgb(24, 114, 150) 0px 2px 4px 0px, rgb(24, 114, 150) 0px 2px 16px 0px;
+  box-shadow: var(--main-clr) 0px 2px 4px 0px, var(--main-clr) 0px 2px 16px 0px;
   color: rgb(24, 114, 150) ;
   background-color: white;
  }
