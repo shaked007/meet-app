@@ -152,7 +152,16 @@ export default {
   content:'קל לקבוע כנס רמטכ"ל'
 }
  }
- @media (min-width: 480px) {
+  @media   (min-width: 480px) and (max-width:1400px) {
+     .melel-container{
+        position: absolute;
+        height: 50%;
+        left: 55%;
+        transform: translate(-45%,0) !important;
+        top: 15%;
+}
+  }
+ @media   (min-width: 1000px) and (max-width:2000px) {
     .melel-container{
   position: absolute;
   height: 50%;
@@ -166,10 +175,11 @@ export default {
 
 }
 .flex-of-page{
+  direction: rtl !important;
   display: flex;
   flex-direction: row;
      background: linear-gradient(
-    to left,
+    to right,
     rgba(0, 0, 0, 0.7) 20%,
   var(--main-clr)
   ), url(@/assets/kenes3.jpeg) !important;
@@ -275,7 +285,7 @@ img{
     /* font-style: italic; */
     position: absolute;
     top:88%;
-    left: 3%;
+    right: 3%;
   content:'קל לקבוע כנס רמטכ"ל'
 }
 

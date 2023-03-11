@@ -1,4 +1,5 @@
 <template>
+<div class="direction-class">
 <div v-if="!$isMobile" class="form-strip">  </div>
 <div  class="flex-mobile">
     
@@ -8,21 +9,28 @@
 <p>תיאום המיקום והאולם באחריות הלשכה המובילה </p>
 <p class="first">  אם  נדרשות עמדות  רישום באחריות מוביל הכנס להעביר דיסק עם רשימה המשתתפים   עפ"י  פורמט  מדויק  שתכתיב   מחלקת <span class="vip-dir">VIP </span> </p>
 <div class="inputs-container">
-    <form>
+    <form method="GET" @submit.stop.prevent="submit"  >
 <v-checkbox  required  class="checkboxes" size="3rem" label="הגשת טופס הבקשה תתבצע עד כשבועיים מתאריך הכנס"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="הלבנות והשחרות של חומרים לא באחריות גדוד 383"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="המחשבים בכנס יהיו ברמת הסיווג של הכנס"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label='אין לפרט על חומרי מסווגים על הכנסים מטעמי ביטחון מידע'> </v-checkbox>
-<input class="finish-terms-button" :disabled="isSubmitValid" type="submit"   value="קראתי והבנתי" v-ripple>
 <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזור</router-link>
+<button class="finish-terms-button" type="submit"  v-ripple>קראתי והבנתי</button>
+
     </form>
 
 </div> 
+</div>
 </div>
 </template>
 
 <script>
 export default {
+    methods:{
+        submit(){
+            this.$router.push({to:'/fill-kenes',name:'fill-kenes'})
+        },
+    },
     data(){
         return{
             vip:'VIP'
@@ -32,11 +40,14 @@ export default {
 </script>
 
 <style scoped>
+.direction-class{
+    direction: ltr !important;
+}
 .form-strip{
     height: 100%;
-    width: 40%;
+    width: 30%;
     position: absolute;
-    left: 0%;
+    right: 0%;
     background-color: var(--main-clr);
 }
 .finish-terms-button{
@@ -51,6 +62,7 @@ export default {
    padding: 0.5em 1em;
 }
 .checkboxes{
+    text-align: center  ;
     width: 80%;
 }
 .checkboxes .v-label{
@@ -67,14 +79,16 @@ export default {
    
 }
 .inputs-container{
-    direction: rtl;
+    direction: ltr !important;
     position: relative;
     left: 3%;
     font-size: 6rem;
 }
 p{
+        color: var(--font-clr);
+direction: ltr;
     position: relative;
-    text-align: right;
+    text-align: left;
     font-weight: 600;
     width:80%;
     line-height: 3.7rem;
@@ -82,16 +96,19 @@ p{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 h3{
+            color: var(--font-clr);
+
     margin-bottom: 30px;
-    font-size:7.5rem;
+    font-size:5rem;
     font-weight: 1000;
 }
 .flex-mobile{
+    direction: ltr !important;
     margin: 0 auto;
     width: 90%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 .double-tick{
     color: var(--main-clr);
@@ -99,14 +116,17 @@ h3{
 @media (min-width: 1180px) {
     .inputs-container{
     direction: rtl;
+    
     position: relative;
     left: 3%;
     width: 30%;
     font-size: 6rem;
 }
     p{
+    direction: ltr !important;
+    color: var(--font-clr);
     position: relative;
-    text-align: right;
+    text-align: let;
     font-weight: 600;
     width:30%;
     line-height: 1.5rem;
@@ -117,7 +137,7 @@ h3{
     font-size: 1.5rem;
 }
      .inputs-container{
-    direction: rtl;
+    direction: ltr;
     position: relative;
     left: 0.4%;
     font-size: 4rem;
@@ -125,7 +145,7 @@ h3{
 }
 .route-back-btn{
     position: absolute;
-    left: 80%;
+    left: 0%;
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;

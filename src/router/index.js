@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ChooseReport from  '../views/ChooseReport.vue'
-import FormView from '../views/FormView.vue'
+import StepFormContainer from '../views/StepFormContainer.vue'
 import ReportView from "../views/ReportView.vue"
 import PrintView from "../views/PrintView.vue"
 import PrintFinalView from "../views/PrintFinalView.vue"
@@ -14,9 +14,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/fill-report',
-    name: 'fill-report',
-    component: FormView
+    path: '/fill-kenes',
+    name: 'fill-kenes',
+    component: StepFormContainer
   },
   {
     path: '/reports',

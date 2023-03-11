@@ -33,7 +33,10 @@ export default {
 
 <style >
 
-
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
 
 .q-field--filled .q-field__control:after{
     height: 0px !important;
@@ -91,6 +94,8 @@ body,html{
    margin:calc() !important;
 }
 :root{
+  --main-font:openSans;
+  --font-clr:  rgb(74,87,96);
     --main-clr: rgba(24, 114, 150);
     font-size: 16px;
   }
@@ -98,27 +103,27 @@ body,html{
    
   
   background-position: 50% 50% !important;
+  background-color: rgb(250,250,250);
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
 
 }
 #app{
-  /* min-width: 480px; */
-  background-position: 70% 50%;
 
-  background-size: cover;
-  background-repeat: no-repeat;
 }
  
 
  @media (max-width: 480px) {
    .inputs-container .checkboxes .v-label{
-    font-size: 3.2rem;
+    /* font-size: 3.2rem; */
+            text-align: left !important;
+
         color: black;
 
 } .inputs-container .checkboxes {
     font-size: 3.2rem;
+
         color: black;
 
 }
@@ -128,21 +133,26 @@ body,html{
         font-size:5px !important;
       }
  }
-@media (min-width: 1460px) {
+@media (min-width: 1000px) {
+  .q-field--with-bottom {
+    padding-bottom: 0px !important;
+}
+.q-field__label {
+  font-size: 0.8rem !important;
+}
          .inputs-container .checkboxes .v-label{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+                text-align: left !important;
+
         color: black;
 
 } .inputs-container .checkboxes {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-align: right !important;
         color: black;
 
 }
-        :root{ 
-
-          font-size:14px;
-          
-        }
+        
 
 }
         .v-label{
