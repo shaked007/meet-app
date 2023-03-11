@@ -3,7 +3,7 @@
     <h5>פרטים כלליים </h5>
     <div class="inputs-container">  
 
-          <q-input lazy-rules="ondemand"  ref="leader" :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+          <q-input lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
                             <q-input lazy-rules="ondemand"  :rules="['date']" ref="date" v-model="modelObject.date"    dir="rtl" no-error-icon placeholder="בחר תאריך" >
 
         <template v-slot:prepend>
@@ -29,11 +29,12 @@
 
     </div>
     
-    <div class="flex-btns">
+    
+     <div class="flex-btns">
         <button class="finish-terms-button" type="submit"  v-ripple> הבא</button>
     </div>
-    
      </form>
+    
 </template>
 
 <script>
@@ -75,8 +76,8 @@ export default {
 
 <style scoped>
 h5{
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 5rem;
+    margin-bottom: 40px;
 }
 .route-back-btn:hover{
         background-color: rgba(128, 128, 128, 0.37);
@@ -92,10 +93,15 @@ h5{
     font-size: 1rem;
 }
 .flex-btns{
-    height: 40px;
+    /* height: 60px; */
+    /* position: absolute; */
+    top: 95%;
     gap: 20px;
     display: flex;
     justify-content: flex-end;
+}
+.form{
+    height: 800px;
 }
 .finish-terms-button{
    /* align-self: center; */
@@ -103,7 +109,7 @@ h5{
    /* left: 50%; */
    /* transform: translateX(-50%); */
    /* margin: 0 auto; */
-   font-size: 1rem;
+   font-size: 2rem;
    background-color: var(--main-clr);
    color: white;
    padding: 0.5em 1em;
@@ -112,11 +118,12 @@ h5{
 .flex-items{
 }
 .direction-class{
- 
+    height: 60px;
 }
 .inputs-container{
+    margin-bottom: 120px;
     text-align: left;
-    gap: 10px 20px;
+    gap: 40px 40px;
     font-size: 4rem;
     display: flex;
     align-content: flex-start;
@@ -124,7 +131,7 @@ h5{
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;
-    height: 400px;
+    height: 500px;
     direction: rtl !important;
 }
 </style>

@@ -18,8 +18,8 @@
         transition-prev="slide-right"
         animated
         transition-next="slide-left"
-        height="auto"
-        width="700px"
+        height="800px"
+        color="transparent"    
         control-color="rgb(74,87,96)"
         >
             <q-carousel-slide :name="1" class="">
@@ -167,10 +167,11 @@ top: 80%;
       background-color:white;
 }
 .wrapper-car{
+    position: relative;
     width: 800px;
 }
 .form-carousel-container{
-    width: 70%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -205,7 +206,7 @@ img{
     text-align: center;
     position: relative;
     height: 100%;
-    width: 30%;
+    width: 40%;
     background-color: var(--main-clr);
 }
 .flex-multi-form{
@@ -239,7 +240,8 @@ dialog{
   opacity: 0;
   text-align: center;
   direction: ltr !important;
-  width: 300px;
+  width: 320px;
+  
   position: fixed;
   top: 50%;
   z-index: 100;

@@ -32,7 +32,9 @@ export default {
 
 
 <style >
-
+.q-carousel {
+    background-color:transparent !important;
+}
 input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;

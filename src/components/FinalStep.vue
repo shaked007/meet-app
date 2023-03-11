@@ -1,7 +1,7 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
                     <h5>פרטים נוספים</h5>
-<img :src="require('@/assets/final.png')" > 
+<!-- <img :src="require('@/assets/final.png')" >  -->
     <div class="inputs-container">  
       
                                                   
@@ -83,16 +83,20 @@ export default {
 </script>
 
 <style  scoped>
-img{
+form{
+    height: 700px;
+}
+
+/* img{
         height: 350px;
     width: 350px;
     position: absolute;
     left: 50%;
-}
+} */
 h5{
     
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 5rem;
+    margin-bottom: 40px;
 }
 h6{
     color: var(--font-clr);
@@ -107,11 +111,11 @@ h6{
     /* position: absolute; */
     left: 0%;
     display: inline-block;
-    padding: 0.5em 1em;
+    padding: 0.5em 1.5em;
     text-decoration: none;
     color: rgb(97, 96, 96);
     transition: all 0.2s ease-in;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 .flex-btns{
     /* height: 40px; */
@@ -125,10 +129,10 @@ h6{
    /* left: 50%; */
    /* transform: translateX(-50%); */
    /* margin: 0 auto; */
-   font-size: rem;
+   font-size: 2rem;
    background-color: var(--main-clr);
    color: white;
-   padding: 0.5em 1em;
+   padding: 0.5em 1.5em;
 }
 
 .flex-items{
@@ -137,10 +141,9 @@ h6{
  
 }
 .inputs-container{
+    margin-bottom: 120px;
     text-align: left;
-                    color:rgb(74,87,96);
-
-    gap: 10px 100px;
+    gap: 40px 40px;
     /* font-size: 4rem; */
     display: flex;
     align-content: flex-start;
@@ -148,7 +151,7 @@ h6{
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;
-    height: 450px;
+    height: 500px;
     direction: rtl !important;
 }
 </style>
