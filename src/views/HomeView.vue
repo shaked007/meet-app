@@ -161,7 +161,7 @@ export default {
         top: 15%;
 }
   }
- @media   (min-width: 1000px) and (max-width:2000px) {
+ @media   (min-width: 1000px) and (max-width:2400px) {
     .melel-container{
   position: absolute;
   height: 50%;
