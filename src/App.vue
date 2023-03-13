@@ -117,14 +117,18 @@ body,html{
  
 
  @media (max-width: 480px) {
+      .checbox-forms{
+            position: relative;
+            right: 6%;
+        }
    .inputs-container .checkboxes .v-label{
-    /* font-size: 3.2rem; */
+    font-size: 3.2rem;
             text-align: left !important;
 
         color: black;
 
 } .inputs-container .checkboxes {
-    font-size: 3.2rem;
+    font-size: 3.2rem !important;
 
         color: black;
 
@@ -136,6 +140,10 @@ body,html{
       }
  }
 @media (min-width: 1000px) {
+      .checbox-forms{
+            position: relative;
+            right: 3%;
+        }
   .q-field--with-bottom {
     padding-bottom: 0px !important;
 }

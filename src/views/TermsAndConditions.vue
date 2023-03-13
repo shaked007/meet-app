@@ -9,7 +9,7 @@
 <p>תיאום המיקום והאולם באחריות הלשכה המובילה </p>
 <p class="first">  אם  נדרשות עמדות  רישום באחריות מוביל הכנס להעביר דיסק עם רשימה המשתתפים   עפ"י  פורמט  מדויק  שתכתיב   מחלקת <span class="vip-dir">VIP </span> </p>
 <div class="inputs-container">
-    <form method="GET" @submit.stop.prevent="submit"  >
+    <form class="checbox-forms" method="GET" @submit.stop.prevent="submit"  >
 <v-checkbox  required  class="checkboxes" size="3rem" label="הגשת טופס הבקשה תתבצע עד כשבועיים מתאריך הכנס"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="הלבנות והשחרות של חומרים לא באחריות גדוד 383"> </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="המחשבים בכנס יהיו ברמת הסיווג של הכנס"> </v-checkbox>
@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style scoped>
+
 .direction-class{
     direction: ltr !important;
 }
@@ -52,10 +53,11 @@ export default {
 }
 .finish-terms-button{
    align-self: center;
-   position: absolute;
-   left: 50%;
-   transform: translateX(-50%);
-   margin: 0 auto;
+   /* position: absolute; */
+   /* left: 50%; */
+   margin-left: 50px;
+   /* transform: translateX(-50%); */
+   /* margin: 0 auto; */
    font-size: 3rem;
    background-color: var(--main-clr);
    color: white;
@@ -113,6 +115,9 @@ h3{
 .double-tick{
     color: var(--main-clr);
 }
+@media (min-width : 480px ) {
+    
+}
 @media (min-width: 1180px) {
     .inputs-container{
     direction: rtl;
@@ -144,7 +149,7 @@ h3{
     
 }
 .route-back-btn{
-    position: absolute;
+    /* position: absolute; */
     left: 0%;
     display: inline-block;
     padding: 0.5em 1em;

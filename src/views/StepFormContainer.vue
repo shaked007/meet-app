@@ -43,12 +43,12 @@
     </div> 
     <div class="blue-stripe"> 
 
-        <img :src="require('@/assets/logo.png')">
+        <img v-if="!$isMobile" :src="require('@/assets/logo.png')">
         <div class="container-flex"> 
         <q-stepper
         ref="stepper"
         v-model="step"
-        vertical
+        :vertical="!$isMobile"
         animated
         class="back-clr"
     
@@ -151,6 +151,36 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width:480px){
+    .inputs-container{
+        
+    }
+    .wrapper-car{
+        width: 100% !important;
+    }
+    .form-carousel-container{
+        width: 100% !important;
+    }
+    .container-flex{
+        position: relative !important;
+        left: 0 !important;
+        top: initial !important;
+        transform: translate(0) !important;
+    }
+    .blue-stripe{
+           text-align: center;
+    position: relative;
+    /* height: 100%; */
+    width: auto !important;
+    }
+    .flex-multi-form{
+    font-family: openSans !important;
+    display: flex;
+    height: 100%;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+}
 .route-back-btn{
     position: absolute;
     left: 0%;
