@@ -1,8 +1,8 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                    <h5 v-if="!$isMobile">פרטים נוספים</h5>
+                    <h5 ref="inputs" v-if="!$isMobile">פרטים נוספים</h5>
 <!-- <img :src="require('@/assets/final.png')" >  -->
-    <div class="inputs-container">  
+    <div class="inputs-container"  ref="inputs" >  
       
                                                   
         <div> 
@@ -45,12 +45,15 @@
 
 <script>
 export default {
-     beforeMount(){
+  beforeMount(){
         setTimeout(window.scrollTo(0,0),100);
-
+  
     },
     mounted(){
         setTimeout(window.scrollTo(0,0),100);
+        if( this.$isMobile){
+        setTimeout(window.scrollTo(0,1),100);
+            }
     },
     methods:{
         

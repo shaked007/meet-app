@@ -1,8 +1,8 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                <h5 v-if="!$isMobile">אנשי קשר תוכן</h5>
+                <h5  ref="inputs" v-if="!$isMobile">אנשי קשר תוכן</h5>
 
-    <div class="inputs-container">  
+    <div class="inputs-container" >  
 
             <h4> מגיש הבקשה</h4>
                                                     <q-input  lazy-rules="ondemand" ref="megish-full-name" v-model="modelObject.megish['full-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם מלא"  :error="false" />
@@ -46,11 +46,13 @@
 export default {
     
     beforeMount(){
-        setTimeout(window.scrollTo(0,0),100);
-
+        setTimeout(window.scrollTo(0,1),100);
+   
     },
     mounted(){
-        setTimeout(window.scrollTo(0,0),100);
+        if( this.$isMobile){
+        setTimeout(window.scrollTo(0,1),100);
+            }
     },
     methods:{
         

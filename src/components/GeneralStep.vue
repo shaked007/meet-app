@@ -1,7 +1,7 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-    <h5 v-if="!$isMobile">פרטים כלליים </h5>
-    <div class="inputs-container">  
+    <h5 ref="inputs"  v-if="!$isMobile">פרטים כלליים </h5>
+    <div class="inputs-container" >  
 
           <q-input lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
                             <q-input lazy-rules="ondemand"  :rules="['date']" ref="date" v-model="modelObject.date"    dir="rtl" no-error-icon placeholder="בחר תאריך" >
@@ -39,12 +39,16 @@
 
 <script>
 export default {
-    beforeMount(){
+  beforeMount(){
         setTimeout(window.scrollTo(0,0),100);
-
+    
     },
     mounted(){
         setTimeout(window.scrollTo(0,0),100);
+        if( this.$isMobile){
+            console.log(this.$refs.inputs)
+        setTimeout(window.scrollTo(0,1),100);
+            }
     },
     methods:{
         

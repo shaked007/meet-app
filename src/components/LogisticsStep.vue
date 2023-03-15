@@ -1,8 +1,8 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                    <h5 v-if="!$isMobile">אנשי קשר תוכן</h5>
+                    <h5 v-if="!$isMobile" ref="inputs">אנשי קשר תוכן</h5>
 
-    <div class="inputs-container">  
+    <div class="inputs-container"   >  
             <h4> גורם מאשר אישורי כניסה</h4>
                                                     <q-input  lazy-rules="ondemand" ref="approver-full-name" v-model="modelObject.approver['full-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם מלא"  :error="false" />
 
@@ -43,12 +43,15 @@
 
 <script>
 export default {
-    beforeMount(){
+   beforeMount(){
         setTimeout(window.scrollTo(0,0),100);
-
+     
     },
-     mounted(){
+    mounted(){
         setTimeout(window.scrollTo(0,0),100);
+        if( this.$isMobile){
+        setTimeout(window.scrollTo(0,1),100);
+            }
     },
     methods:{
         

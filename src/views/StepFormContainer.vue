@@ -103,6 +103,8 @@
 import GeneralStep from '@/components/GeneralStep.vue'
 import TohenStep from "@/components/TohenStep.vue"
 import LogisticsStep from "@/components/LogisticsStep.vue"
+import { scroll } from 'quasar'
+
 import FinalStep from "@/components/FinalStep.vue"
 
 
@@ -114,6 +116,7 @@ export default {
         }
     },
     methods:{
+    
         returnToMain(){
             this.$router.push('/')
         },
@@ -132,6 +135,7 @@ export default {
 
         },
         changeFormData(action,data){
+           
                 if(action =='next'){
                     this.formData.push(data)
                     this.step++;
