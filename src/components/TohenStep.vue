@@ -1,6 +1,6 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                <h5>אנשי קשר תוכן</h5>
+                <!-- <h5>אנשי קשר תוכן</h5> -->
 
     <div class="inputs-container">  
 
@@ -45,7 +45,7 @@
 <script>
 export default {
      mounted(){
-        window.scrollTo(0,0)
+        setTimeout(window.scrollTo(0,0),100);
     },
     methods:{
         

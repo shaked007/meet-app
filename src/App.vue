@@ -118,6 +118,16 @@ body,html{
  
 
  @media (max-width: 480px) {
+  .q-stepper {
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    background: rgb(250,250,250) !important;
+}
+  .q-stepper--horizontal .q-stepper__step-inner {
+    padding: 24px;
+    font-size: 5rem;
+    color: var(--main-clr);
+}
   .q-stepper__header--alternative-labels .q-stepper__tab{
     padding: 24px 0px !important;
   }
