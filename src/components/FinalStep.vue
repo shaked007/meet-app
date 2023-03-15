@@ -45,7 +45,11 @@
 
 <script>
 export default {
-     mounted(){
+     beforeMount(){
+        setTimeout(window.scrollTo(0,0),100);
+
+    },
+    mounted(){
         setTimeout(window.scrollTo(0,0),100);
     },
     methods:{

@@ -43,6 +43,10 @@
 
 <script>
 export default {
+    beforeMount(){
+        setTimeout(window.scrollTo(0,0),100);
+
+    },
      mounted(){
         setTimeout(window.scrollTo(0,0),100);
     },

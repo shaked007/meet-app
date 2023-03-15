@@ -84,7 +84,7 @@ export default {
     rgba(0, 0, 0, 0.7) 20%,
  rgba(0, 0, 0, 0.7) 20%
   ), url(@/assets/kenes3.jpeg) !important;
-    background-position: 40% 50% !important;
+    background-position: 60% 50% !important;
   background-size: cover !important;
   height: 100%;
   background-repeat: no-repeat !important;
@@ -137,7 +137,7 @@ export default {
   letter-spacing: 6px;
   text-align: center;
   font-size: 10rem;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 200px;
   font-weight: 800;
   color:white;
