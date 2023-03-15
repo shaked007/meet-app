@@ -87,6 +87,7 @@ input[type=number] {
 }
 
 body,html{
+  scroll-behavior: smooth;
   font-family: openSans !important;
   min-height: 100vh;
   
@@ -117,6 +118,9 @@ body,html{
  
 
  @media (max-width: 480px) {
+  .q-stepper__header--alternative-labels .q-stepper__tab{
+    padding: 24px 0px !important;
+  }
       .checbox-forms{
             position: relative;
             right: 6%;

@@ -18,7 +18,7 @@
         transition-prev="slide-right"
         animated
         transition-next="slide-left"
-        height="800px"
+        :height="$isMobile? 'auto':'800px'"
         color="transparent"    
         control-color="rgb(74,87,96)"
         >
@@ -36,7 +36,7 @@
                               </q-carousel-slide>
                                 <q-carousel-slide :name="4" class="">
 
-               <FinalStep  @action="postForm" />
+               <FinalStep  @back="changeFormData" @action="postForm" />
                               </q-carousel-slide>
         </q-carousel>
         </div>
@@ -47,6 +47,7 @@
         <div class="container-flex"> 
         <q-stepper
         ref="stepper"
+         :alternative-labels="$isMobile"
         v-model="step"
         :vertical="!$isMobile"
         animated
@@ -152,8 +153,41 @@ export default {
 
 <style scoped>
 @media (max-width:480px){
+    dialog{
+  opacity: 0;
+  text-align: center;
+  direction: ltr !important;
+  width: 320px;
+  
+  position: fixed;
+  top: 50%;
+  z-index: 100;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  height: 50% !important;
+  border: none;
+  border-radius: 20px;
+  left: 50%;
+  transform: translate(50%,-50%) scale(0.8);
+}
+    
+    dialog h5{
+ 
+  text-align: center;
+  color: grey;
+  font-size: 3rem !important; 
+}
+    dialog h6{
+        margin-top: 20px !important;
+           margin-bottom: 20px !important;
+  text-align: center;
+  color: black;
+  font-size: 4rem !important; 
+}
     .inputs-container{
-        
+        margin-bottom: 0px !important;
+        gap: 0px !important;
+        align-items: center !important;
+        width: 330px !important;
     }
     .wrapper-car{
         width: 100% !important;
@@ -276,7 +310,7 @@ dialog{
   top: 50%;
   z-index: 100;
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  height: 40%;
+  height: 45%;
   border: none;
   border-radius: 20px;
   left: 50%;

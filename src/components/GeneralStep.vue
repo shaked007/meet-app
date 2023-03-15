@@ -39,6 +39,9 @@
 
 <script>
 export default {
+    mounted(){
+        window.scrollTo(0,0)
+    },
     methods:{
         
         submit(){
@@ -75,6 +78,34 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width:480px){
+    h5{
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 20px !important;
+    }
+    .inputs-container{
+        margin-bottom: 0px !important;
+        gap: 0px !important;
+        width: 250px !important;
+        flex-wrap: nowrap !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        height:auto !important;
+    }
+    .finish-terms-button{
+    font-size: 4rem !important;
+}
+.flex-btns{
+    justify-content: center  !important;
+}
+}
+.finish-terms-button{
+    font-size: 2rem ;
+}
+.flex-btns{
+    justify-content: center ;
+}
 h5{
     font-size: 5rem;
     margin-bottom: 40px;
@@ -131,7 +162,7 @@ h5{
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;
-    height: 500px;
+    height:500px;
     direction: rtl !important;
 }
 </style>

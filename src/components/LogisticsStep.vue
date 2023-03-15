@@ -32,7 +32,7 @@
     </div>
     
     <div class="flex-btns">
-                     <button class="route-back-btn" @click="$emit('action','back')" v-if="!$isMobile">  חזור </button>
+                     <button class="route-back-btn" @click="$emit('action','back')" >  חזור </button>
 
         <button class="finish-terms-button" type="submit"  v-ripple> הבא</button>
 
@@ -43,6 +43,9 @@
 
 <script>
 export default {
+     mounted(){
+        window.scrollTo(0,0)
+    },
     methods:{
         
         submit(){
@@ -107,6 +110,45 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width:480px){
+    h4{
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    color: var(--font-clr);
+    font-size: 3.4rem !important;
+    text-align: center;
+}
+    h5{
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 20px !important;
+    }
+    .inputs-container{
+        margin-bottom: 0px !important;
+        gap: 0px !important;
+        width: 250px !important;
+        flex-wrap: nowrap !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        height:auto !important;
+    }
+    .finish-terms-button{
+    font-size: 4rem !important;
+}
+.route-back-btn{
+    /* position: absolute; */
+    left: 0%;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: rgb(97, 96, 96);
+    transition: all 0.2s ease-in;
+    font-size: 4rem !important;
+}
+.flex-btns{
+    justify-content: center  !important;
+}
+}
 .form{
     height: 800px;
 }
