@@ -1,6 +1,6 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                    <!-- <h5>אנשי קשר תוכן</h5> -->
+                    <h5 v-if="!$isMobile">אנשי קשר תוכן</h5>
 
     <div class="inputs-container">  
             <h4> גורם מאשר אישורי כניסה</h4>

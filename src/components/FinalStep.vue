@@ -1,6 +1,6 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-                    <!-- <h5>פרטים נוספים</h5> -->
+                    <h5 v-if="!$isMobile">פרטים נוספים</h5>
 <!-- <img :src="require('@/assets/final.png')" >  -->
     <div class="inputs-container">  
       

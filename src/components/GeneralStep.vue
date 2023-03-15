@@ -1,6 +1,6 @@
 <template>
 <form method="GET" @submit.stop.prevent="submit" >
-    <!-- <h5>פרטים כלליים </h5> -->
+    <h5 v-if="!$isMobile">פרטים כלליים </h5>
     <div class="inputs-container">  
 
           <q-input lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
