@@ -5,15 +5,32 @@
     
 <v-icon size="180" class="double-tick"> mdi-check-all</v-icon>
 <h3> לפני שמתחילים</h3>
-<p> הכנס יתוכנן לארבעה שלבים: תיאום ציפיות מול הגדוד סיור במיקום על מנת לוודא תקינותו, קבלת חומרים יומיים טרם הכנס ויום הקמות </p>
-<p>תיאום המיקום והאולם באחריות הלשכה המובילה </p>
-<p class="first">  אם  נדרשות עמדות  רישום באחריות מוביל הכנס להעביר דיסק עם רשימה המשתתפים   עפ"י  פורמט  מדויק  שתכתיב   מחלקת <span class="vip-dir">VIP </span> </p>
+<p> הכנס יתוכנן לכמה שלבים: </p>
+<ol>
+    <li>אישורי תוכניות והצגת הכנס </li>
+    <li>סיור במקום ובדיקת תקינות אמצעים </li>
+    <li> הקמות ומסדרים</li>
+    <li>  יום הכנס עצמו</li>
+
+</ol>
+<!-- <p> הכנס יתוכנן לארבעה שלבים:
+     תיאום ציפיות מול הגדוד
+      סיור במיקום על מנת לוודא תקינותו, 
+      קבלת חומרים יומיים טרם הכנס ויום הקמות </p> -->
+<p>תיאום המיקום והאולם באחריות מוביל הכנס. </p>
+<p class="first"> אם  נדרשות עמדות  רישום, באחריות מוביל הכנס להעביר דיסק עם רשימת המשתתפים עפ"  הפורמט  המדויק.  </p>
 <div class="inputs-container">
     <form class="checbox-forms" method="GET" @submit.stop.prevent="submit"  >
 <v-checkbox  required  class="checkboxes" size="3rem" label="הגשת טופס הבקשה תתבצע עד כשבועיים מתאריך הכנס"> </v-checkbox>
-<v-checkbox  required  class="checkboxes" size="3rem" label="הלבנות והשחרות של חומרים לא באחריות גדוד 383"> </v-checkbox>
+<v-checkbox  required  class="checkboxes" size="3rem" > 
+    <template v-slot:label>
+        <div>
+        הלבנות והשחרות של חומרים  <span class="font-class">  אינן באחריות גדוד   383 ! </span>
+        </div>
+         </template>
+</v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="המחשבים בכנס יהיו ברמת הסיווג של הכנס"> </v-checkbox>
-<v-checkbox  required  class="checkboxes" size="3rem" label='אין לפרט על חומרי מסווגים על הכנסים מטעמי ביטחון מידע'> </v-checkbox>
+<v-checkbox  required  class="checkboxes" size="3rem" label='אין לכתוב דברים מסווגים טופס הבקשה הנ"ל'> </v-checkbox>
 <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזור</router-link>
 <button class="finish-terms-button" type="submit"  v-ripple>קראתי והבנתי</button>
 
@@ -40,6 +57,20 @@ export default {
 </script>
 
 <style scoped>
+ol{
+        /* font-size: 3.2rem; */
+    margin: 0px 0px 16px;
+    color: var(--font-clr);
+    font-weight: 600;
+    font-size: 2.3rem;
+    position: relative;
+    left: 15px;
+}
+.font-class{
+    font-family: var(--font-bold) !important;
+    font-weight: bolder !important;
+    text-decoration: underline;
+}
 
 .direction-class{
     direction: ltr !important;
@@ -95,7 +126,7 @@ direction: ltr;
     width:80%;
     line-height: 3.7rem;
     font-size: 3.2rem;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;   */
 }
 h3{
             color: var(--font-clr);
@@ -119,6 +150,15 @@ h3{
     
 }
 @media (min-width: 1180px) {
+    ol{
+        /* font-size: 3.2rem; */
+    margin: 0px 0px 16px;
+    color: var(--font-clr);
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    left: 18px;
+}
     .inputs-container{
     direction: rtl;
     

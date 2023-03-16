@@ -81,6 +81,10 @@ input[type=number] {
   font-family: openSans;
   src: url(@/assets/OpenSansHebrew-Bold.ttf);
 }
+@font-face {
+  font-family: openSansBold;
+  src: url(@/assets/opensansbold.woff2);
+}
 @font-face{  
   font-family: secondary;
   src: url(@/assets/FbElectronSans-Regular.woff);
@@ -101,6 +105,7 @@ body,html{
   --font-clr:  rgb(74,87,96);
     --main-clr: rgba(24, 114, 150);
     font-size: 16px;
+    --font-bold:openSansBold;
   }
 .v-application{
    

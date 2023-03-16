@@ -21,8 +21,8 @@
       </q-input>
                     <q-input lazy-rules="ondemand" ref="location" v-model="modelObject.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
                     <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="modelObject['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
-                                        <q-input  lazy-rules="ondemand" ref="top-level" v-model="modelObject['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="דרגה מובילה בכנס"  :error="false" />
-      <q-select lazy-rules="ondemand"  :rules="typeSomethingRule" ref="secret-level" v-model="modelObject['secret-level']" dir="rtl" :options="options" label='סב"ט הכנס' />
+                                        <q-input  lazy-rules="ondemand" ref="top-level" v-model="modelObject['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
+      <q-select lazy-rules="ondemand"  :rules="typeSomethingRule" ref="secret-level" v-model="modelObject['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
         <div> 
             
         </div>
