@@ -4,12 +4,12 @@
     <div class="inputs-container" >  
 
           <q-input lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
-                            <q-input lazy-rules="ondemand"  :rules="['date']" ref="date" v-model="modelObject.date"    dir="rtl" no-error-icon placeholder="בחר תאריך" >
+                            <q-input lazy-rules="ondemand" :model-value=" modelObject.date.from == modelObject.date.to ? modelObject.date.from :modelObject.date.from+ '-'+ modelObject.date.to" :rules="typeSomethingRule" ref="date" :v-model="modelObject.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>
           <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy  transition-show="scale" transition-hide="scale">
-                              <q-date  v-model="modelObject.date">
+            <q-popup-proxy ref="prox"  transition-show="scale" transition-hide="scale">
+                              <q-date @range-end="handleRange"   range  v-model="modelObject.date">
 
                 <div class="row items-center justify-end">
                   <q-btn v-close-popup label="סגור" color="primary"  />
@@ -51,7 +51,15 @@ export default {
             }
     },
     methods:{
-        
+        handleRange(range){
+            this.$refs.prox.hide()
+            console.log(range)
+            console.log(this.modelObject.date)
+            if(typeof this.modelObject.date == 'string'){
+                console.log('string')
+                this.modelObject.date = {from:this.modelObject.date,to:this.modelObject.date}
+            } 
+        },
         submit(){
             this.$refs['leader'].validate()
             this.$refs['date'].validate()
@@ -69,7 +77,7 @@ export default {
         
             modelObject:{
                 leader:"",
-                date:"",
+                date:'',
                 location:"",
                 "kenes-name":'',
                 "top-level":"",
@@ -115,6 +123,8 @@ export default {
     justify-content: center ;
 }
 h5{
+            color: var(--main-clr);
+
     font-size: 5rem;
     margin-bottom: 40px;
 }
@@ -134,10 +144,10 @@ h5{
 .flex-btns{
     /* height: 60px; */
     /* position: absolute; */
-    top: 95%;
+    top: 90%;
     gap: 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content:center;
 }
 .form{
     height: 800px;
@@ -162,15 +172,15 @@ h5{
 .inputs-container{
     margin-bottom: 120px;
     text-align: left;
-    gap: 40px 40px;
+    gap: 40px 60px;
     font-size: 4rem;
     display: flex;
     align-content: flex-start;
-    width: 200px;
+    width: 250px;
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;
-    height:500px;
+    height:450px;
     direction: rtl !important;
 }
 </style>

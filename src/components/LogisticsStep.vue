@@ -160,6 +160,8 @@ export default {
     height: 800px;
 }
 h5{
+        color: var(--main-clr);
+
      font-size: 5rem;
     margin-bottom: 40px;
 }
@@ -186,7 +188,7 @@ h4{
     /* height: 40px; */
     gap:   20px ;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .finish-terms-button{
    /* align-self: center; */

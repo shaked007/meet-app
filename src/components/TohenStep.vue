@@ -160,13 +160,15 @@ export default {
 .form{
     height: 800px;
 }
-h5{
+h5{            
+    color: var(--main-clr);
+
      font-size: 5rem;
     margin-bottom: 40px;
 }
 h4{
     color: var(--font-clr);
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -187,7 +189,7 @@ h4{
     /* height: 40px; */
     gap:   20px ;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .finish-terms-button{
    /* align-self: center; */
@@ -213,7 +215,8 @@ h4{
     font-size: 4rem;
     display: flex;
     align-content: flex-start;
-    width: 200px;
+       width: 250px;
+
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;

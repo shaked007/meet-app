@@ -6,7 +6,7 @@
       
                                                   
         <div> 
-            <h6> האם יש צורך בחברה אזרחית?</h6> 
+            <h6>? האם יש צורך בחברת  הגברה/התקנה </h6> 
                 <q-option-group
                 ref="is-dovrim-clock"
                 color="rgb(74,87,96)"
@@ -18,7 +18,7 @@
     />
         </div>
         <div> 
-            <h6> האם יש צורך בשעון דוברים?</h6> 
+            <h6> ? האם יש צורך בשעון דוברים</h6> 
 
             <q-option-group
             ref='is-dovrim-clock'
@@ -93,6 +93,9 @@ export default {
 </script>
 
 <style  scoped>
+.direction-class{
+    direction: rtl !important;
+}
 @media (max-width:480px){
     img{
     
@@ -153,9 +156,10 @@ form{
     left: 50%;
 } */
 h5{
-    
+        color: var(--main-clr);
+
     font-size: 5rem;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 h6{
     color: var(--font-clr);
@@ -180,7 +184,7 @@ h6{
     /* height: 40px; */
     gap:   20px ;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .finish-terms-button{
    /* align-self: center; */
@@ -206,7 +210,7 @@ h6{
     /* font-size: 4rem; */
     display: flex;
     align-content: flex-start;
-    width: 200px;
+    width: 270px;
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap-reverse;

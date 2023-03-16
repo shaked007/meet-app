@@ -43,12 +43,13 @@
     </div> 
     <div class="blue-stripe"> 
 
-        <img v-if="!$isMobile" :src="require('@/assets/logo.png')">
+        <img class="icon" v-if="!$isMobile" :src="require('@/assets/logo.png')">
         <div class="container-flex"> 
         <q-stepper
         ref="stepper"
          :alternative-labels="$isMobile"
         v-model="step"
+     
         :vertical="!$isMobile"
         animated
         class="back-clr"
@@ -90,7 +91,7 @@
         
         </div>
                     <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזרה למסך הבית  <v-icon>mdi-home </v-icon> </router-link>
-
+<img class="zameret-img" v-if="!$isMobile" :src="require('@/assets/383zameret.png')" > 
     </div>
     <div> 
     </div>
@@ -218,12 +219,13 @@ export default {
     flex-direction: column-reverse;
     justify-content: space-between;
 }
+
 }
 .route-back-btn{
     position: absolute;
     left: 0%;
     color: var(--main-clr);
-top: 80%;
+top:58%;
     left: 50%;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     transform: translateX(-50%);
@@ -234,6 +236,7 @@ top: 80%;
     font-size: 1rem;
       background-color:white;
 }
+
 .wrapper-car{
     position: relative;
     width: 800px;
@@ -248,7 +251,7 @@ top: 80%;
     color: green !important;
     font-size: 4rem;
 }
-img{
+.icon{
     position: relative;
     top: 5%;
     width: 300px;
@@ -258,8 +261,18 @@ img{
     position: absolute;
     left: 50%;
     /* padding: 50px; */
-    top: 50%;
+    top: 35%;
     transform: translate(-50%,-50%);
+}
+.zameret-img{
+    position: absolute;
+    top: 80%;
+    width: 220px;
+    left: -0.4%;
+        transform: translate(-50%,-50%);
+
+    /* left: 37.8%; */
+    height: 250px !important;
 }
 .back-clr{
     

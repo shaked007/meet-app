@@ -32,6 +32,9 @@ export default {
 
 
 <style >
+.q-gutter-x-sm{
+  margin-left: -16px !important;
+}
 .q-carousel {
     background-color:transparent !important;
 }
