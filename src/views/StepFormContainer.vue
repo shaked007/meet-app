@@ -18,13 +18,13 @@
         transition-prev="slide-right"
         animated
         transition-next="slide-left"
-        :height="$isMobile? 'auto':'800px'"
+        :height="$isMobile? 'auto':'auto'"
         color="transparent"    
         control-color="rgb(74,87,96)"
         >
             <q-carousel-slide :name="1" class="">
 
-               <GeneralStep @action="changeFormData" />
+               <GeneralStep :modelProp="formData[step]" @action="changeFormData" />
                               </q-carousel-slide>
   <q-carousel-slide :name="2" class="">
 
@@ -91,8 +91,9 @@
         
         </div>
                     <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזרה למסך הבית  <v-icon>mdi-home </v-icon> </router-link>
-<img class="zameret-img" v-if="!$isMobile" :src="require('@/assets/383zameret.png')" > 
     </div>
+    <img class="zameret-img" v-if="!$isMobile" :src="require('@/assets/383zameret.png')" > 
+
     <div> 
     </div>
  
@@ -141,7 +142,7 @@ export default {
                     this.formData.push(data)
                     this.step++;
                 }else if(action == 'back'){
-                        this.formData.pop()
+                        console.log(this.formData)
                     this.step--;
                 }
         }
@@ -158,6 +159,11 @@ export default {
 
 <style scoped>
 @media (max-width:480px){
+    .wrapper-car{
+    position: relative;
+    width: 800px;
+    margin-top: 0px !important;
+}
     dialog{
   opacity: 0;
   text-align: center;
@@ -240,12 +246,13 @@ top:58%;
 .wrapper-car{
     position: relative;
     width: 800px;
+    margin-top: 45px;
 }
 .form-carousel-container{
     width: 60%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 .header{
     color: green !important;
@@ -253,7 +260,7 @@ top:58%;
 }
 .icon{
     position: relative;
-    top: 5%;
+    top: 50px;
     width: 300px;
     margin: 0 auto;
 }
@@ -268,11 +275,11 @@ top:58%;
     position: absolute;
     top: 80%;
     width: 220px;
-    left: -0.4%;
+    left: 60%;
         transform: translate(-50%,-50%);
 
     /* left: 37.8%; */
-    height: 250px !important;
+    height: 280px !important;
 }
 .back-clr{
     

@@ -146,7 +146,7 @@ export default {
 }
 }
 form{
-    height: 700px;
+    /* height: 700px; */
 }
 
 /* img{
@@ -158,7 +158,7 @@ form{
 h5{
         color: var(--main-clr);
 
-    font-size: 5rem;
+    font-size: 4rem;
     margin-bottom: 50px;
 }
 h6{

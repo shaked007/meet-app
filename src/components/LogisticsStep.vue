@@ -162,7 +162,7 @@ export default {
 h5{
         color: var(--main-clr);
 
-     font-size: 5rem;
+    font-size: 4rem;
     margin-bottom: 40px;
 }
 h4{

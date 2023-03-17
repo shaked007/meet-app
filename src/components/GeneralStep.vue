@@ -39,7 +39,25 @@
 
 <script>
 export default {
+    props:{
+        modelProp:{
+                default:function () {
+                    return {
+                leader:"",
+                date:'',
+                location:"",
+                "kenes-name":'',
+                "top-level":"",
+                "secret-level":""
+            }
+                    
+                }
+        }
+    },
   beforeMount(){
+    console.log(this.modelProp)
+    this.modelObject = {...this.modelProp}
+    
         setTimeout(window.scrollTo(0,0),100);
     
     },
@@ -125,7 +143,7 @@ export default {
 h5{
             color: var(--main-clr);
 
-    font-size: 5rem;
+    font-size: 4rem;
     margin-bottom: 40px;
 }
 .route-back-btn:hover{

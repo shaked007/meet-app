@@ -55,7 +55,7 @@ export default {
             }
     },
     methods:{
-        
+     
         submit(){
             this.$refs['megish-personal-number'].validate()
             this.$refs['megish-level'].validate()
@@ -163,7 +163,7 @@ export default {
 h5{            
     color: var(--main-clr);
 
-     font-size: 5rem;
+    font-size: 4rem;
     margin-bottom: 40px;
 }
 h4{
