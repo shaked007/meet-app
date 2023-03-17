@@ -97,6 +97,9 @@ export default {
     direction: rtl !important;
 }
 @media (max-width:480px){
+    form{
+    height: 700px ;
+}
     img{
     
     }
