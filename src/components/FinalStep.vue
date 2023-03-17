@@ -34,7 +34,7 @@
     </div>
     
     <div class="flex-btns">
-                     <button class="route-back-btn" @click="$emit('back','back')" >  חזור </button>
+                     <button class="route-back-btn" @click.prevent="$emit('back','back',modelObject)"  >  חזור </button>
 
         <button class="finish-terms-button" type="submit"  v-ripple> סיים</button>
 
@@ -44,8 +44,17 @@
 </template>
 
 <script>
-export default {
+export default {    props:{
+        modelProp:{
+                
+        }
+    },
   beforeMount(){
+        if(this.modelProp){
+            this.modelObject = {...this.modelProp}
+
+    }
+
         setTimeout(window.scrollTo(0,0),100);
   
     },

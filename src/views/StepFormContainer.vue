@@ -28,15 +28,15 @@
                               </q-carousel-slide>
   <q-carousel-slide :name="2" class="">
 
-               <TohenStep  @action="changeFormData" />
+               <TohenStep   :modelProp="formData[step]"  @action="changeFormData" />
                               </q-carousel-slide>
-            <q-carousel-slide :name="3" class="">
+            <q-carousel-slide  :modelProp="formData[step]"  :name="3" class="">
 
-               <LogisticsStep  @action="changeFormData" />
+               <LogisticsStep   :modelProp="formData[step]"  @action="changeFormData" />
                               </q-carousel-slide>
                                 <q-carousel-slide :name="4" class="">
 
-               <FinalStep  @back="changeFormData" @action="postForm" />
+               <FinalStep   :modelProp="formData[step]"  @back="changeFormData" @action="postForm" />
                               </q-carousel-slide>
         </q-carousel>
         </div>
@@ -49,7 +49,7 @@
         ref="stepper"
          :alternative-labels="$isMobile"
         v-model="step"
-     
+    color="#187296"
         :vertical="!$isMobile"
         animated
         class="back-clr"
@@ -90,7 +90,7 @@
         </q-stepper>
         
         </div>
-                    <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזרה למסך הבית  <v-icon>mdi-home </v-icon> </router-link>
+                    <router-link  class="route-back-btn" to="/" v-if="!$isMobile">   למסך הבית  <v-icon>mdi-home </v-icon> </router-link>
     </div>
     <img class="zameret-img" v-if="!$isMobile" :src="require('@/assets/383zameret.png')" > 
 
@@ -113,7 +113,7 @@ import FinalStep from "@/components/FinalStep.vue"
 export default {
     data(){
         return{
-            formData:[],
+            formData:{"1":"","2":'',"3":'','4':''},
             step:1
         }
     },
@@ -123,7 +123,7 @@ export default {
             this.$router.push('/')
         },
       async  postForm(data){
-            this.formData.push(data)
+            this.formData[this.step] = {...data}
             console.log(this.formData)
            this.$swal({title:'מעלה דוח',text:'אנא המתן'})
                 this.$swal.showLoading()
@@ -139,10 +139,12 @@ export default {
         changeFormData(action,data){
            
                 if(action =='next'){
-                    this.formData.push(data)
+                   this.formData[this.step] = {...data}
                     this.step++;
+            
                 }else if(action == 'back'){
-                        console.log(this.formData)
+                        this.formData[this.step] = {...data}
+
                     this.step--;
                 }
         }
@@ -228,18 +230,21 @@ export default {
 
 }
 .route-back-btn{
-    position: absolute;
-    left: 0%;
+       font-size: 2rem;
+
+       padding: 0.5em 1em;
+    /* position: absolute; */
+    /* left: 0%; */
     color: var(--main-clr);
-top:58%;
-    left: 50%;
+/* top:58%; */
+    /* left: 50%; */
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
     transition: all 0.2s ease-in;
-    font-size: 1rem;
+    /* font-size: 1rem; */
       background-color:white;
 }
 
@@ -259,17 +264,23 @@ top:58%;
     font-size: 4rem;
 }
 .icon{
+    margin-bottom: 100px;
     position: relative;
-    top: 50px;
+    /* top: 50px; */
     width: 300px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
 }
 .container-flex{
-    position: absolute;
-    left: 50%;
+    margin: 0 auto;
+    width: 180px ;
+    margin-bottom: 205px;
+    /* position: absolute;
+    left: 50%; */
     /* padding: 50px; */
-    top: 35%;
-    transform: translate(-50%,-50%);
+    /* top: 35%;
+    transform: translate(-50%,-50%); */
 }
 .zameret-img{
     position: absolute;
@@ -284,7 +295,8 @@ top:58%;
 .back-clr{
     
     /* font-size: 1.5rem; */
-    font-weight:600;
+    /* font-weight:600; */
+    color: var(--main-clr);
        
     
         /* justify-content: center; */

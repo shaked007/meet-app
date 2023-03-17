@@ -24,7 +24,7 @@ app.config.globalProperties.$isMobileFunc =  ()=>{
 
   },
   app.config.globalProperties.$isMobile = app.config.globalProperties.$isMobileFunc()
-console.log(app.config.globalProperties.$isMobile)
+// console.log(app.config.globalProperties.$isMobile)
 
 app.use(router).use(Quasar, quasarUserOptions)
   .use(vuetify,{rtl:true}).use(VueSweetalert2).use(LottieAnimation)

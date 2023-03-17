@@ -32,6 +32,9 @@ export default {
 
 
 <style >
+.q-stepper__tab--active{
+  color: var(--main-clr) !important;
+}
 .q-gutter-x-sm{
   margin-left: -16px !important;
 }

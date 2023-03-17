@@ -41,22 +41,14 @@
 export default {
     props:{
         modelProp:{
-                default:function () {
-                    return {
-                leader:"",
-                date:'',
-                location:"",
-                "kenes-name":'',
-                "top-level":"",
-                "secret-level":""
-            }
-                    
-                }
+              
         }
     },
   beforeMount(){
-    console.log(this.modelProp)
-    this.modelObject = {...this.modelProp}
+    if(this.modelProp){
+            this.modelObject = {...this.modelProp}
+
+    }
     
         setTimeout(window.scrollTo(0,0),100);
     
@@ -64,17 +56,14 @@ export default {
     mounted(){
         setTimeout(window.scrollTo(0,0),100);
         if( this.$isMobile){
-            console.log(this.$refs.inputs)
         setTimeout(window.scrollTo(0,1),100);
             }
     },
     methods:{
         handleRange(range){
             this.$refs.prox.hide()
-            console.log(range)
-            console.log(this.modelObject.date)
+      
             if(typeof this.modelObject.date == 'string'){
-                console.log('string')
                 this.modelObject.date = {from:this.modelObject.date,to:this.modelObject.date}
             } 
         },
