@@ -209,6 +209,8 @@ export default {
         width: 100% !important;
     }
     .container-flex{
+    margin-bottom:0px !important;
+    width: 100% !important;
         position: relative !important;
         left: 0 !important;
         top: initial !important;
@@ -276,11 +278,6 @@ export default {
     margin: 0 auto;
     width: 180px ;
     margin-bottom: 205px;
-    /* position: absolute;
-    left: 50%; */
-    /* padding: 50px; */
-    /* top: 35%;
-    transform: translate(-50%,-50%); */
 }
 .zameret-img{
     position: absolute;
