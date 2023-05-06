@@ -1,11 +1,11 @@
 <template>
 <h4 class="main-title"> טופס שילוח משימה</h4>
  <h6 class="sub-title"> היסטוריית דוחות</h6>
-<div class="password-container" v-if="!isAuthenticated">
+<!-- <div class="password-container" v-if="!isAuthenticated">
   <v-text-field  type="password" :error="isError" @input="checkIfZeroLength" :placeholder=" isError  ?'סיסמא לא נכונה' :'הכנס סיסמא'" v-model="passValue"> </v-text-field>
   <button class="check-password-button" @click="checkPassword"> בדוק סיסמא</button>
  
-  </div>
+  </div> -->
     <div class="text-center">
 
     <v-progress-circular v-if="!isFinished && spinnerStarter"

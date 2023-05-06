@@ -11,7 +11,7 @@
 
 <div class="links-flex">
     <router-link v-ripple  class="report" to="/terms-and-conditions">להזמנת כנס </router-link>
-  <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
+  <router-link class="history" to="login"> לצפייה בכנסים</router-link>
 
    </div>
 </div>

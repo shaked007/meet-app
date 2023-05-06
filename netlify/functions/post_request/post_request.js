@@ -8,9 +8,8 @@ const handler = async (event) => {
     try {
       
      
-        const database = (await clientPromise).db('cluster0');
-        const collection = database.collection('drives');
-        console.log(event.body)
+        const database = (await clientPromise).db('cluster1');
+        const collection = database.collection('requests');
         const results = await collection.insertOne(
           JSON.parse(event.body)
          )

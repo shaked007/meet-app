@@ -30,6 +30,7 @@
             :rules="typeSomethingRule"
             />
         </div>
+          <q-input v-model="modelObject['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label="הכנס אימייל"/>
 
     </div>
     
@@ -68,11 +69,11 @@ export default {    props:{
         
         submit(){
          
-        
+            this.$refs.email.validate()
 
             if (this.modelObject['is-dovrim-clock'] !=="" &&  this.modelObject['is-hevra-ezrahit'] !=="" )
               {
-                this.$emit("action","next",this.modelObject)                
+                this.$emit("action",this.modelObject)                
             }
         }
     },
@@ -80,6 +81,7 @@ export default {    props:{
         return{
         
             modelObject:{
+            'contact-email':'',
             "is-hevra-ezrahit":"",
            "is-dovrim-clock":"", 
 

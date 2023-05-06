@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     props:{
         modelProp:{
@@ -74,6 +75,7 @@ export default {
             this.$refs['kenes-name'].validate()
             this.$refs['top-level'].validate()
             this.$refs['secret-level'].validate()
+            this.modelObject['submitted-date'] = moment(new Date(),'L', 'he').format("יום dddd  D/M/y")
             if (!this.$refs['leader'].hasError &&  !this.$refs['date'].hasError &&  !this.$refs['location'].hasError &&  !this.$refs['kenes-name'].hasError &&  !this.$refs['top-level'].hasError && !this.$refs['secret-level'].hasError  ){
                 this.$emit("action","next",this.modelObject)                
             }

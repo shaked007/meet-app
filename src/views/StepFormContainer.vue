@@ -106,6 +106,8 @@ import GeneralStep from '@/components/GeneralStep.vue'
 import TohenStep from "@/components/TohenStep.vue"
 import LogisticsStep from "@/components/LogisticsStep.vue"
 import { scroll } from 'quasar'
+import axios from "axios"
+import moment from "moment"
 
 import FinalStep from "@/components/FinalStep.vue"
 
@@ -113,6 +115,8 @@ import FinalStep from "@/components/FinalStep.vue"
 export default {
     data(){
         return{
+            postUrl:'/.netlify/functions/post_request',
+            mailUrl:'/.netlify/functions/send_email',
             formData:{"1":"","2":'',"3":'','4':''},
             step:1
         }
@@ -123,18 +127,36 @@ export default {
             this.$router.push('/')
         },
       async  postForm(data){
+            console.log(data)
             this.formData[this.step] = {...data}
-            console.log(this.formData)
-           this.$swal({title:'מעלה דוח',text:'אנא המתן'})
+            var storageData ={}
+            storageData['general'] = {...this.formData['1']}
+            storageData['tohen'] = {...this.formData['2']}
+            storageData['logistics'] = {...this.formData['3']}
+            storageData['final'] = {...this.formData['4']}
+      
+           this.formData = {...storageData}
+            this.$swal({title:'מעלה דוח',text:'אנא המתן'})
                 this.$swal.showLoading()
-    //   const response = await axios.post(this.currentUrl,JSON.stringify(data))
-    //   if(response.status== 200){
-            this.$swal.hideLoading()
-            this.$swal.close()
-                this.$refs.dialog.showModal()
-                this.$refs.dialog.classList.add("ani-class")
-    //   }
+      const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData))
+      if(postResponse.status== 200){
+          
 
+            const mailResponse = await axios.post(this.mailUrl,JSON.stringify({
+                    'contact-email':this.formData['final']['contact-email'],
+                    'kenes-name':this.formData['general']['kenes-name'],
+                    'megish':this.formData['tohen']['megish']['full-name'],
+                    'submitted-date':moment(new Date(),'L', 'he').format("יום dddd  D/M/y")
+            }))
+            if(mailResponse.status == 200){
+                this.$swal.hideLoading()
+                        this.$swal.close()
+                            this.$refs.dialog.showModal()
+                            this.$refs.dialog.classList.add("ani-class")
+                }
+
+            }
+        
         },
         changeFormData(action,data){
            
