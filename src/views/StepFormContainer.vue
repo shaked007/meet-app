@@ -138,7 +138,12 @@ export default {
            this.formData = {...storageData}
             this.$swal({title:'מעלה דוח',text:'אנא המתן'})
                 this.$swal.showLoading()
-      const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData))
+      const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData),{
+        headers:{
+            Authorization:`Bearer ${sessionStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        }
+      })
       if(postResponse.status== 200){
           
 

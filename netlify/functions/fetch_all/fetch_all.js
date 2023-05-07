@@ -4,10 +4,13 @@ const mongoClient = new MongoClient('mongodb+srv://shakedbuk:AqWTlymx9DT7ESrD@cl
 
 const clientPromise = mongoClient.connect();
 
-const handler = async (event) => {
+const handler = async (event,context) => {
+    if(!Object.keys(context.clientContext).length){
+        return {statusCode: 401,body: "unauthorized"}
+    }
     try {
-        const database = (await clientPromise).db('cluster0');
-        const collection = database.collection('drives');
+        const database = (await clientPromise).db('cluster1');
+        const collection = database.collection('requests');
         const results = await collection.find({}).toArray();
         return {
             statusCode: 200,
