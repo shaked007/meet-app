@@ -4,10 +4,9 @@ const mongoClient = new MongoClient('mongodb+srv://shakedbuk:AqWTlymx9DT7ESrD@cl
 
 const clientPromise = mongoClient.connect();
 
-const handler = async (event) => {
-    try {
-      
-     
+const handler = async (event,context) => {
+    
+    try {   
         const database = (await clientPromise).db('cluster1');
         const collection = database.collection('requests');
         const results = await collection.insertOne(

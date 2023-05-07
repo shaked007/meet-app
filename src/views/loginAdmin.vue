@@ -11,6 +11,11 @@ export default {
             locale:"he",
         logo: true // you can try false and see what happens
         });
+        netlifyIdentity.on("login", async (user)=>{
+            const token =  await user.jwt()
+            console.log(token)
+            sessionStorage.setItem("token",token)
+        })
     },
     mounted(){
         netlifyIdentity.open("login");
