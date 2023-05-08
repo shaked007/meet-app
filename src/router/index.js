@@ -6,6 +6,9 @@ import ReportView from "../views/ReportView.vue"
 import PrintView from "../views/PrintView.vue"
 import PrintFinalView from "../views/PrintFinalView.vue"
 import TermsAndConditions  from "../views/TermsAndConditions.vue"
+import MainAdmin from   "../views/MainAdmin.vue" 
+import MainPending from "../views/MainPending.vue" 
+import MainBoard from "../views/MainBoard.vue" 
 
 const routes = [
   {
@@ -18,6 +21,24 @@ const routes = [
     name: 'fill-kenes',
     component: StepFormContainer
   },
+  
+    {
+      path: '/admin',
+      name: 'admin',
+      component: MainAdmin
+    },
+  
+    {
+      path: '/admin/pending',
+      name: 'pending',
+      component: MainPending
+    },
+    {
+      path: '/admin/board',
+      name: 'board',
+      component: MainBoard
+    },
+  
   {
     path: '/login',
     name: 'login',
