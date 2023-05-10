@@ -1,5 +1,5 @@
 <template>
-  <Nav/>
+  <Nav :activeLink="'board'" />
 </template>
 
 <script>

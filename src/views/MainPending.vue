@@ -1,5 +1,5 @@
 <template>
-  <Nav/>
+  <Nav :activeLink="'pending'" />
 </template>
 
 <script>
