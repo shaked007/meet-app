@@ -4,9 +4,8 @@ const mongoClient = new MongoClient('mongodb+srv://shakedbuk:AqWTlymx9DT7ESrD@cl
 
 const clientPromise = mongoClient.connect();
 
-const handler = async (event,context) => {
-    const accessToken = context.clientContext
-    console.log(accessToken)
+const handler = async (event) => {
+
     try {   
         const database = (await clientPromise).db('cluster1');
         const collection = database.collection('requests');
@@ -18,7 +17,7 @@ const handler = async (event,context) => {
             body: event.body,
         }
     } catch (error) {
-        return { statusCode: 500, body: event.body }
+        return { statusCode: 500, body: error.message }
     }
 }
 

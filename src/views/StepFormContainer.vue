@@ -141,7 +141,6 @@ export default {
                 this.$swal.showLoading()
       const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData),{
         headers:{
-            Authorization:`Bearer ${sessionStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         }
       })
