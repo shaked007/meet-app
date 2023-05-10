@@ -1,7 +1,7 @@
 <template>
   <nav> 
     <router-link to="/"> 
-      <img :src="require('@/assets/logo.png')">
+      <img v-if="!$ismobile" :src="require('@/assets/logo.png')">
     </router-link> 
     <div class="flex-links"> 
             <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
@@ -25,7 +25,7 @@ export default {
         margin: 0px 10px;
 }
 .flex-links a{
-  padding: 5px 10px;
+  padding: 5px 40px;
         font-size: 1.5rem;
         color: white;
         margin: 0px 20px;
@@ -39,13 +39,15 @@ export default {
 img{
     position: absolute;
     height: 80px;
-        left: 100%;
-        transform: translate(-100%,-50%);
+        left: 50%;
+        border: 10px solid var(--main-clr);
+        /* padding: 100px 100px; */
+        transform: translate(-63%,40%);
 
 }
 nav{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     /* text-align: right; */
     height: 100px;

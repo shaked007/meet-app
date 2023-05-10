@@ -97,6 +97,7 @@ input[type=number] {
 }
 
 body,html{
+  overflow-y: auto  !important;
   scroll-behavior: smooth;
   font-family: openSans !important;
   min-height: 100vh;
