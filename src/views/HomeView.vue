@@ -23,7 +23,7 @@
 <h1 class="main-title"> MeetApp</h1>
 
     <router-link v-ripple  class="report" to="/terms-and-conditions"><div class="icon-and-text-flex"><v-icon size="100">mdi-calendar-plus </v-icon>להזמנת כנס </div></router-link>
-  <router-link class="history" to="reports"> לצפייה בכנסים</router-link>
+  <router-link class="history" to="login"> לצפייה בכנסים</router-link>
 
 </div>
    </div>
