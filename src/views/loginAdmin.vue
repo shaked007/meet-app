@@ -5,6 +5,7 @@
 <script>
 import Nav from "@/components/Nav.vue"
 import netlifyIdentity  from "netlify-identity-widget"
+import { SessionStorage } from 'quasar'
 export default {
     name:'loginAdmin',
   
@@ -12,7 +13,14 @@ export default {
         return{
         }
     },
-    beforeMount(){
+    methods:{
+        asyncParse(str){
+            return new Promise((res,rej)=>{
+                res(JSON.parse(str))
+            })
+        }
+    },
+      async beforeMount(){
         netlifyIdentity.init({
             locale:"he",
         logo: true // you can try false and see what happens
@@ -21,17 +29,17 @@ export default {
             
 
             const token =  await user.jwt()
-            console.log(token)
             sessionStorage.setItem("token",token)
             this.$router.push('/admin')
-            console.log('d')
         })
          if(!localStorage.getItem('gotrue.user')){
             netlifyIdentity.open("login");
         }else{
             netlifyIdentity.close()
+            const parsedResponse = await this.asyncParse(localStorage.getItem('gotrue.user'))
+            sessionStorage.setItem('token',parsedResponse.token.access_token)
             this.$router.push('/admin')
-            console.log('d')
+
 
         }
     },
