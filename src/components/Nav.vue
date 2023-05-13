@@ -8,20 +8,74 @@
                 <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
                  <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
     </div>
+        <a  v-if="$isMobile" class="toggle-button" @click="isActive = !isActive">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
   </nav> 
+  <div v-if="$isMobile && isActive" class="mobile-flex"> 
+      <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
+                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
+                 <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
+  </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      isActive:false,
+    }
+  },
     props:["pendingNumber","activeLink"]
 }
 </script>
 
 <style scoped>
+@media(max-width:480px){
+  .mobile-flex{
+    background-color: var(--main-clr);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+     font-size:2.3rem;
+     gap: 5px;
+   
+        color: white;
+  }
+  .mobile-flex a{
+       padding: 5px 20px;
+      border-radius: 20px;
+     color: white;
+  text-decoration: none;
+  }
+  .flex-links{
+    display: none !important;
+}
+    .toggle-button {
+        display: flex !important;
+    }
+nav{
+  height: 80px !important;
+  justify-content: space-between !important;
+}
+img{
+    position: relative !important;
+    height: 80px;
+        left: 0% !important;
+        border: 10px solid var(--main-clr);
+        padding: 0 !important;
+      transform: none  !important;
+
+}
+}
+
 .flex-links{
     display: flex;
 
-}.flex-links a span{
+}
+.flex-links a span{
         margin: 0px 10px;
 }
 .flex-links a{
@@ -56,5 +110,25 @@ nav{
     /* height: 100px; */
     background-color: var(--main-clr);
 }
+
+.toggle-button {
+    position: relative;
+    top: .75rem;
+    left: 3rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
 
 </style>

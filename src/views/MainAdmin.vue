@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style scoped>
+@media(max-width:480px){
+.knasim-flex{
+  gap: 30px !important;
+  justify-content: center;
+}
+}
+
 .spinner-container{
   text-align: center;
 }

@@ -41,6 +41,33 @@ export default {
 </script>
 
 <style scoped>
+
+@media(max-width:480px){
+  
+    .kenes-card{
+        display: flex;
+        gap: 15px;
+        /* align-items: center; */
+        flex-direction: column;
+        border-radius: 20px;
+        font-size: 4rem !important;
+        position: relative;
+        background-color: #EEE;
+        padding: 0.7em;
+        max-width:380px !important;
+        flex: 0 0 100% !important; 
+ }
+ .days{
+    font-size:4rem !important;
+}
+.to-report-link{
+
+    font-size:4rem !important;
+}
+.kenes-leader{
+     font-size:3rem !important;
+}
+}
 .days{
     font-size: 1.4rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
