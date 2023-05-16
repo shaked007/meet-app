@@ -9,8 +9,8 @@ const handler = async (event) => {
         const apiParams= event.queryStringParameters;
         const finalObject = {};
         finalObject['_id'] = apiParams.id
-        const database = (await clientPromise).db('cluster0');
-        const collection = database.collection('drives');
+        const database = (await clientPromise).db('cluster1');
+        const collection = database.collection('requests');
         const results = await collection.find({'_id':ObjectId(apiParams.id)}).toArray();
         console.log(finalObject)
         console.log(results)

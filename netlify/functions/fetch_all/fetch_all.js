@@ -12,6 +12,7 @@ const handler = async (event,context) => {
         const database = (await clientPromise).db('cluster1');
         const collection = database.collection('requests');
         const results = await collection.find({}).toArray();
+        console.log(results)
         return {
             statusCode: 200,
             body: JSON.stringify(results),

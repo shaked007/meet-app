@@ -44,7 +44,7 @@ const routes = [
     name: 'login',
     component: loginAdmin
   }, {
-    path: '/reports/:id',
+    path: '/kenes/:id',
     name: ':id',
     component: ReportView
   },

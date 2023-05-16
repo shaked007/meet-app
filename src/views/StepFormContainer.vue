@@ -102,14 +102,14 @@
 </template>
 
 <script>
-import GeneralStep from '@/components/GeneralStep.vue'
-import TohenStep from "@/components/TohenStep.vue"
-import LogisticsStep from "@/components/LogisticsStep.vue"
+import GeneralStep from '@/components/kenesRequestForm/Steps/GeneralStep.vue'
+import TohenStep from "@/components/kenesRequestForm/Steps/TohenStep.vue"
+import LogisticsStep from "@/components/kenesRequestForm/Steps/LogisticsStep.vue"
 import { scroll } from 'quasar'
 import axios from "axios"
 import moment from "moment"
 
-import FinalStep from "@/components/FinalStep.vue"
+import FinalStep from "@/components/kenesRequestForm/Steps/FinalStep.vue"
 
 
 export default {

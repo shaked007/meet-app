@@ -5,10 +5,11 @@
   <br>
     <h1> רשימת כנסים</h1>
     <div class="spinner-container" v-if="!isAuthenticated" >
-       <q-spinner  
-        color="blue"
-        size="6em"
-      />
+       <v-progress-circular 
+      indeterminate
+      color="blue"
+      size="90"
+    ></v-progress-circular>
 </div>
   <div class="knasim-flex" v-if="isAuthenticated">
         <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
