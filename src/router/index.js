@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import loginAdmin from  '../views/loginAdmin.vue'
 import StepFormContainer from '../views/StepFormContainer.vue'
-import ReportView from "../views/ReportView.vue"
+import ReportView from "../views/KenesView.vue"
 import PrintView from "../views/PrintView.vue"
 import PrintFinalView from "../views/PrintFinalView.vue"
 import TermsAndConditions  from "../views/TermsAndConditions.vue"

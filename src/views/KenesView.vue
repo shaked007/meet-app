@@ -17,14 +17,18 @@
 
 
   <div class="flex-subjects" v-if="isAuthenticated  && isFinished">
+    <h4> פרטים כללים</h4>
 
       <GeneralCard :general="{...report.general}" @on-edit="updateKenes" />
+          <h4> פרטים נוספים</h4>
+
     <ExtraCard :extra="{...report.final}" @on-edit="updateKenes" />
-    <!-- <PersonCard v-for="person in Object.keys(personsObject)" :person="{...personsObject[person]}" :key="person" @on-edit="updateKenes" />  -->
- 
+          <h4> אנשי קשר</h4>
+
+    <PersonCard v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :person="{...personsObject[person].data}" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
 
   </div>
-  <div class="btns-flex">
+  <div class="btns-flex" v-if="isAuthenticated  && isFinished" >
      <q-btn color="red" label="מחק כנס" icon-right="delete" />
     <q-btn  color="green" label="סיים עריכה" icon-right="mdi-check" />
 
@@ -78,22 +82,25 @@ export default {
     
   },
   methods:{
-    print(){
-      window.print()
-    },
+
        async getReportById(){
         this.spinnerStarter = true;
-        const reportResponse = await axios.get(this.url);
+        const reportResponse = await axios.get(this.url,{
+        headers:{
+          Authorization:`Bearer ${sessionStorage.getItem('token')}`
+        }
+       });
         this.report = reportResponse.data[0];
         console.log(this.report)
          this.currentDate = moment(new Date( this.report['date']),'L', 'he').format("יום dddd  D/M/y")
          
 
         console.log(this.report)
-        this.personsObject['megish'] = {...this.report.tohen.megish}
-        this.personsObject['leader'] = {...this.report.tohen.leader}
-        this.personsObject['approver'] = {...this.report.logistics.approver}
-        this.personsObject['supplier'] = {...this.report.logistics.supplier}
+        this.personsObject['megish'] = {icon:'mdi-human-greeting-proximity',data:{...this.report.tohen.megish},job:'מגיש הבקשה'}
+        this.personsObject['leader'] = {icon:'mdi-account-star',data:{...this.report.tohen.leader},job:'מוביל חומרים'}
+        this.personsObject['approver'] = {icon:'mdi-account-check',data:{...this.report.logistics.approver},job:'גורם מאשר אישורי כניסה'}
+        this.personsObject['supply'] =  {icon:'mdi-account-cog',data:{...this.report.logistics.supply},job:'אחראי אספקת ריהוט'}
+        console.log( this.personsObject['supply'])
 
 
         this.report.date = moment(new Date(this.report.date),'L', 'he').format("יום dddd  D/M/y");
@@ -106,6 +113,26 @@ export default {
 </script>
 
 <style scoped> 
+@media(max-width:480px){
+   h6{
+            margin-top: 20px !important;
+        margin-bottom: 20px !important;
+           /* color: var(--font-clr); */
+    font-size: 3rem !important;
+    /* text-align: center; */
+    }
+      h4{
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    /* color: var(--font-clr); */
+    font-size: 3.4rem !important;
+    /* text-align: center; */
+}
+}
+h4{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
 h6{
   text-align: center;
   color: grey;
@@ -120,11 +147,15 @@ h1{
   width: 100%;
   margin:0 auto;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;;
   flex-wrap: wrap;
-  max-width: 80rem;
+  max-width: 50rem;
+  /* gap: 30px; */
+  margin-bottom: 20px;
 }
 .btns-flex{
+    margin-bottom: 20px;
+
     gap: 20px;
     display: flex;
     justify-content: center;

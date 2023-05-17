@@ -31,7 +31,14 @@ export default {
 </script>
 
 
-<style >
+<style > 
+@media (max-width:480px) {
+
+}
+
+.q-expansion-item__content > .q-card{
+  background-color: rgba(0,0,0,0) !important;
+}
 .q-stepper__tab--active{
   color: var(--main-clr) !important;
 }

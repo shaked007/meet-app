@@ -34,13 +34,23 @@ export default {
     data(){
         return{
                               options:['בלמ"ס','שמור',"סודי",'סד"ב'],
-            isReadMode:{
-                    
-            },
+      
             generalModel:'',
         }
     },
-    props:['general',"isDisabled"],
+    methods:{
+        updateParent(){
+            
+        },
+handleRange(range){
+            this.$refs.prox.hide()
+      
+            if(typeof this.generalModel.date == 'string'){
+                this.generalModel.date = {from:this.generalModel.date,to:this.generalModel.date}
+            } 
+        },
+    },
+    props:['general'],
     beforeMount(){
         this.generalModel = {...this.general}
     }
@@ -48,13 +58,22 @@ export default {
 </script>
 
 <style scoped>
+@media(max-width:480px){
+   .flex-fields{
+    margin-bottom: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+}
+
 .flex-fields{
     margin-bottom: 30px;
     display: flex;
     gap: 20px;
 }
 .general-card-container{
-    padding: 50px;
+    /* padding: 10px; */
     /* opacity: 0.7; */
     /* height: 30rem; */
     /* background-color: #27e650; */

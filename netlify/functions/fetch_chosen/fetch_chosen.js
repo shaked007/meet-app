@@ -4,7 +4,11 @@ const mongoClient = new MongoClient('mongodb+srv://shakedbuk:AqWTlymx9DT7ESrD@cl
 
 const clientPromise = mongoClient.connect();
 
-const handler = async (event) => {
+const handler = async (event,context) => {
+    if(!Object.keys(context.clientContext).length){
+        return {statusCode: 401,body: "unauthorized"}
+    }
+
     try {
         const apiParams= event.queryStringParameters;
         const finalObject = {};
