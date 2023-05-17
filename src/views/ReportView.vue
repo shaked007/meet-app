@@ -1,6 +1,11 @@
 <template>
- <!-- <h2> gg</h2> -->
-<Nav/>
+<Nav/>  <br>
+  <br>
+  <br>
+ <h1> כנס </h1>
+
+ <h6 >מצב עריכה </h6>
+
  <div class="spinner-class">
 
     <v-progress-circular v-if="!isFinished && spinnerStarter"
@@ -11,16 +16,19 @@
     </div>
 
 
-  <div v-if="isAuthenticated  && isFinished">
+  <div class="flex-subjects" v-if="isAuthenticated  && isFinished">
 
-
-
-
-
-
-
+      <GeneralCard :general="{...report.general}" @on-edit="updateKenes" />
+    <ExtraCard :extra="{...report.final}" @on-edit="updateKenes" />
+    <!-- <PersonCard v-for="person in Object.keys(personsObject)" :person="{...personsObject[person]}" :key="person" @on-edit="updateKenes" />  -->
+ 
 
   </div>
+  <div class="btns-flex">
+     <q-btn color="red" label="מחק כנס" icon-right="delete" />
+    <q-btn  color="green" label="סיים עריכה" icon-right="mdi-check" />
+
+ </div>
 </template>
 
 <script>
@@ -41,6 +49,7 @@ export default {
   name:"ReportView",
   data(){
     return{
+      personsObject:{},
       spinnerStarter:false,
     currentDate:'',
     isFinished:false,
@@ -50,6 +59,7 @@ export default {
       contactsObject:{},
       stopsObject:{},
       report:[],
+
        jobs:[{hebrewName:'מפקד משלח משימה',name:"mefaked-meshaleh-mesima"},
       {name:'mefaked-mesima',hebrewName:"מפקד המשימה"},
        {name:'driver',hebrewName:"נהג"}
@@ -80,6 +90,12 @@ export default {
          
 
         console.log(this.report)
+        this.personsObject['megish'] = {...this.report.tohen.megish}
+        this.personsObject['leader'] = {...this.report.tohen.leader}
+        this.personsObject['approver'] = {...this.report.logistics.approver}
+        this.personsObject['supplier'] = {...this.report.logistics.supplier}
+
+
         this.report.date = moment(new Date(this.report.date),'L', 'he').format("יום dddd  D/M/y");
            this.isAuthenticated = true;
            this.isFinished = true
@@ -90,24 +106,28 @@ export default {
 </script>
 
 <style scoped> 
-.printer-link{
-  position: absolute;
-  top: 1%;
-  left: 1%;
-  display: inline-block;
-  color: white;
-  background-color: black;
-  text-decoration: none;
-  outline: none;
-  border-radius: 20px;
-  padding: 0.5em 1em;
-}
-.phone-container a{
-  color: white;
-}
-.phone-container{
+h6{
   text-align: center;
-  color: white;
+  color: grey;
+}
+h1{
+  font-family:var(--font-bold);
+  /* margin-bottom: 2rem; */
+  text-align: center;
+}
+.flex-subjects{
+  display: flex;
+  width: 100%;
+  margin:0 auto;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 80rem;
+}
+.btns-flex{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
 }
 .spinner-class{
 display: flex;
@@ -115,103 +135,7 @@ position: relative;
 top: 30%;
 align-items: center;
 justify-content: center;
-  
-}
-h6{
-  margin-bottom: 10px !important;
-}
-.nosim-title{
-  color: white;
-  font-size: 1.25rem;
 }
 
-
-.person--job-title{
-  display: inline-block;
-  color: rgba(255, 255, 255, 0.829);
-  margin-bottom: 10px;
-  font-size: 1rem;
-}
-.input-group__input *{
-  color: rgba(255, 255, 255, 0.87) !important;
-  }
-.names-container{
-  text-align: center;
-}
-.no-permissions-header{
-  color: white;
-  position: relative;
-  top: 30%;
-  text-align: center;
-}
-.main-title{
-  color:white;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
-.font-sizer label{
-  font-size:0.9rem !important;
-}
-.direction-wrapper{
-  direction: ltr !important;
-}
-.form-subtitle{
-  text-align: center;
-  font-size: 1.4rem;
-}
-.grey-zone-container{
-
- border-radius: 20px;
-  background-color: rgb(0,0,0,0.5);
-  direction: rtl !important;
-  width: 95%;
-    min-height: 80vh;
-  margin-left :auto;
-  margin-right:auto;
-  margin-bottom: 15px;
-}
-.flex-inputs{
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  color: white !important;
-  width: 95%;
-  padding-top: 10px;
-  /* align-items: center; */
-  gap: 10px 10px;
-  margin: 0 auto;
-  justify-content: flex-start;
-}
-.finish-report-button{
-    margin: 0 auto;
-    border-radius: 20px;
-    background-color: white;
-    padding: 0.5em 1.8em;
-}
-form{
-  padding-bottom: 20px;
-  text-align: center;
-}
-.current-date{
-  text-align: center;
-  color: rgba(255, 255, 255, 0.781);
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  font-weight: 400 !important;
-
-}
-
-.main-title{
-
-  text-align: center;
-  font-size: 3rem;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color:white;
-}
 
 </style>

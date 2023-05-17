@@ -1,13 +1,62 @@
 <template>
-  
+  <div class="general-card-container">
+     <div class="flex-fields">
+        
+                      <q-input lazy-rules="ondemand"  ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+       <q-input lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to" :rules="typeSomethingRule" ref="date" :v-model="generalModel.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
+
+        <template v-slot:prepend>
+          <q-icon name="access_time" class="cursor-pointer">
+            <q-popup-proxy ref="prox"  transition-show="scale" transition-hide="scale">
+                              <q-date @range-end="handleRange"   range  v-model="generalModel.date">
+
+                <div class="row items-center justify-end">
+                  <q-btn v-close-popup label="סגור" color="primary"  />
+                </div>
+              </q-date>
+            </q-popup-proxy>
+          </q-icon>
+        </template>
+      </q-input>
+
+                    <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="generalModel['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
+        
+         </div>
+           <q-input lazy-rules="ondemand" ref="location" v-model="generalModel.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
+                                                    <q-input  lazy-rules="ondemand" ref="top-level" v-model="generalModel['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
+      <q-select lazy-rules="ondemand"  :rules="typeSomethingRule" ref="secret-level" v-model="generalModel['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
+  </div>
 </template>
 
 <script>
 export default {
-
+    name:"generalCard",
+    data(){
+        return{
+                              options:['בלמ"ס','שמור',"סודי",'סד"ב'],
+            isReadMode:{
+                    
+            },
+            generalModel:'',
+        }
+    },
+    props:['general',"isDisabled"],
+    beforeMount(){
+        this.generalModel = {...this.general}
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
+.flex-fields{
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+}
+.general-card-container{
+    padding: 50px;
+    /* opacity: 0.7; */
+    /* height: 30rem; */
+    /* background-color: #27e650; */
+}
 </style>
