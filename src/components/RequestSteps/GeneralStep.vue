@@ -3,7 +3,7 @@
     <h5 ref="inputs"  v-if="!$isMobile">פרטים כלליים </h5>
     <div class="inputs-container" >  
 
-          <q-input lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+          <q-input  lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
                             <q-input lazy-rules="ondemand" :model-value=" modelObject.date.from == modelObject.date.to ? modelObject.date.from :modelObject.date.from+ '-'+ modelObject.date.to" :rules="typeSomethingRule" ref="date" :v-model="modelObject.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>

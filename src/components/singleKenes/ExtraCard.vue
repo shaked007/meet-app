@@ -2,6 +2,7 @@
   <div class="extra-card-container">
                   <h6> האם יש צורך בחברת  הגברה/התקנה ?</h6> 
                 <q-option-group
+                @update:model-value="updateParent"
                 ref="is-dovrim-clock"
                 color="rgb(74,87,96)"
       v-model="extraModel['is-hevra-ezrahit']"
@@ -13,6 +14,7 @@
             <h6>  האם יש צורך בשעון דוברים ?  </h6> 
 
             <q-option-group
+            @update:model-value="updateParent"
             ref='is-dovrim-clock'
                   left-label
                 color="rgb(74,87,96)"
@@ -22,7 +24,7 @@
       
             />
         </div>
-          <q-input v-model="extraModel['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
+          <q-input @update:model-value="updateParent" v-model="extraModel['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
 
     
   </div>
@@ -43,6 +45,13 @@ export default {
                 value: true
                 },]
         }
+    },
+    methods:{
+        updateParent(){
+            console.log(this.extraModel)
+          this.$emit("on-edit",this.extraModel,"final")
+            
+        },
     },
        beforeMount(){
             this.extraModel = {...this.extra}

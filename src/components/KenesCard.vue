@@ -20,7 +20,7 @@
         <div> 
 
         </div>
-        <router-link class="to-report-link" :name="kenesId" :to="`/kenes/${kenesId}`">  מעבר לכנס</router-link>
+        <router-link class="to-report-link" :name="kenesId" :to="`/kenes/approved/${kenesId}`">  מעבר לכנס</router-link>
          </div>
 </template>
 

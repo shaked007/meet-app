@@ -19,18 +19,18 @@
   <div class="flex-subjects" v-if="isAuthenticated  && isFinished">
     <h4> פרטים כללים</h4>
 
-      <GeneralCard :general="{...report.general}" @on-edit="updateKenes" />
+      <GeneralCard :general="report.general" @on-edit="updateKenes" />
           <h4> פרטים נוספים</h4>
 
-    <ExtraCard :extra="{...report.final}" @on-edit="updateKenes" />
+    <ExtraCard :extra="report.final" @on-edit="updateKenes" />
           <h4> אנשי קשר</h4>
 
-    <PersonCard v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :person="{...personsObject[person].data}" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
+    <PersonCard v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
 
   </div>
   <div class="btns-flex" v-if="isAuthenticated  && isFinished" >
-     <q-btn color="red" label="מחק כנס" icon-right="delete" />
-    <q-btn  color="green" label="סיים עריכה" icon-right="mdi-check" />
+     <q-btn color="red" @click="handleDelete" label="מחק כנס" icon-right="delete" />
+    <q-btn @click="handleEdit" color="green" label="סיים עריכה" icon-right="mdi-check" />
 
  </div>
 </template>
@@ -62,13 +62,14 @@ export default {
       drivesObject:{},
       contactsObject:{},
       stopsObject:{},
-      report:[],
+      report:{},
 
        jobs:[{hebrewName:'מפקד משלח משימה',name:"mefaked-meshaleh-mesima"},
       {name:'mefaked-mesima',hebrewName:"מפקד המשימה"},
        {name:'driver',hebrewName:"נהג"}
       ],
-
+      deleteUrl:"/.netlify/functions/delete_report",
+      updateUrl:"/.netlify/functions/update_report",
           url:"/.netlify/functions/fetch_chosen?id=" + window.location.href.split('/')[window.location.href.split('/').length-1],
 
       // url:"http://localhost:3000/reports/" + window.location.href.split('/')[window.location.href.split('/').length-1]
@@ -82,7 +83,60 @@ export default {
     
   },
   methods:{
+    async handleDelete(){
+       const outcome = await this.$swal({
+          icon:'warning',
+          title:`בטוח שברצונך למחוק את: ${this.report.general['kenes-name']}?`,
+          text:'לא תוכל להחזיר פעולה זו ',
+          showCancelButton:true,
+          confirmButtonColor:'red',
+          confirmButtonText:'מחק',
+          cancelButtonText:'בטל'
+        })
+        if(outcome.isConfirmed){
+          this.$swal({title:'מוחק פריט',text:'אנא המתן'})
+                this.$swal.showLoading()
 
+         const res  = await axios.post(this.deleteUrl,JSON.stringify({'_id':this.report['_id']}),{
+              headers:{
+                Authorization:`Bearer ${sessionStorage.getItem('token')}`
+              }
+             })
+         if (res.status == 200){
+                   this.$swal.hideLoading()
+            this.$swal({text:'הפריט נמחק בהצלחה'})
+            this.$router.push('/admin')
+        }
+      }
+    },
+   async handleEdit(){
+      this.$swal({title:'מעדכן פריט',text:'אנא המתן'})
+                this.$swal.showLoading()
+
+         const res  = await axios.post(this.updateUrl,JSON.stringify({'_id':this.report['_id'],object:this.report}),{
+              headers:{
+                Authorization:`Bearer ${sessionStorage.getItem('token')}`
+              }
+             })
+         if (res.status == 200){
+                   this.$swal.hideLoading()
+            this.$swal({text:'הפריט עודכן בהצלחה',timer:1000})
+            this.$router.push('/admin')
+        }
+
+    },
+      updateKenes(updatedData,type){
+          if(type == 'supply' || type =='approver'){
+                this.report.logistics[type] =updatedData
+              return
+          }else if (type =='leader' || type =='megish'){
+              this.report.tohen[type] = updatedData
+              return
+          }
+          this.report[type] =updatedData
+          console.log(this.report)
+
+      },
        async getReportById(){
         this.spinnerStarter = true;
         const reportResponse = await axios.get(this.url,{
@@ -90,17 +144,13 @@ export default {
           Authorization:`Bearer ${sessionStorage.getItem('token')}`
         }
        });
-        this.report = reportResponse.data[0];
+        this.report = reportResponse.data[0]; 
         console.log(this.report)
-         this.currentDate = moment(new Date( this.report['date']),'L', 'he').format("יום dddd  D/M/y")
-         
-
-        console.log(this.report)
+      
         this.personsObject['megish'] = {icon:'mdi-human-greeting-proximity',data:{...this.report.tohen.megish},job:'מגיש הבקשה'}
         this.personsObject['leader'] = {icon:'mdi-account-star',data:{...this.report.tohen.leader},job:'מוביל חומרים'}
         this.personsObject['approver'] = {icon:'mdi-account-check',data:{...this.report.logistics.approver},job:'גורם מאשר אישורי כניסה'}
         this.personsObject['supply'] =  {icon:'mdi-account-cog',data:{...this.report.logistics.supply},job:'אחראי אספקת ריהוט'}
-        console.log( this.personsObject['supply'])
 
 
         this.report.date = moment(new Date(this.report.date),'L', 'he').format("יום dddd  D/M/y");

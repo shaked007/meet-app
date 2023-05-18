@@ -11,9 +11,11 @@ const handler = async (event,context) => {
     try {
         const database = (await clientPromise).db('cluster1');
         const collection = database.collection('requests');
-        console.log(event.body['_id'])
-        const results = await collection.deleteOne(
-          {'_id': ObjectId(JSON.parse(event.body)['_id'])}
+        const parsedObject = JSON.parse(event.body)
+        const data = {...parsedObject['object']}
+        delete data['_id']
+        const results = await collection.updateOne(
+          {'_id': ObjectId(parsedObject['_id'])},{$set:data}
          )
          console.log(results)
         return {

@@ -32,9 +32,6 @@ export default {
 
 
 <style > 
-@media (max-width:480px) {
-
-}
 
 .q-expansion-item__content > .q-card{
   background-color: rgba(0,0,0,0) !important;
@@ -137,6 +134,9 @@ body,html{
  
 
  @media (max-width: 480px) {
+  .swal2-popup{
+    font-size: 2rem !important;
+  }
   .q-stepper {
     box-shadow: none !important;
     border-radius: 0px !important;
