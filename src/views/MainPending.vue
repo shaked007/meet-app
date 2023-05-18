@@ -11,9 +11,30 @@
       size="90"
     ></v-progress-circular>
 </div>
-  <div class="knasim-flex" v-if="isAuthenticated">
+<table> 
+                    <thead>
+                        <tr>
+                                   <th >מחיקה </th>
+                              <th> דוח</th>
+                            <th>נהג</th>
+                            <th> תאריך </th>
+                                                     
+
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr v-for="kenes in knasim" :key="kenes['_id']">
+                                                            <td ><button class="link-to-report" > מחק </button></td>
+
+                            <td> <router-link class="link-to-report" :name="kenes._id" :to="'/kenes/pending'+kenes['_id']">לצפייה </router-link></td>
+                            <!-- <td>{{drive['driver']}} </td>
+                            <td>{{drive.date}} </td> -->
+                             </tr>
+                    </tbody>
+                                    </table>
+  <!-- <div class="knasim-flex" v-if="isAuthenticated">
         <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
-    </div> 
+    </div>  -->
 </template>
 
 <script>
@@ -60,6 +81,15 @@ export default {
 .spinner-container{
   text-align: center;
 }
+table th, table td{ /* Added padding for better layout after collapsing */
+    padding: 4px 8px;
+}
+table thead tr th{
+    width: 80px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom: 1px solid grey;
+}
 .knasim-flex{
   width: 100%;
       gap: 15px;
@@ -68,6 +98,21 @@ export default {
     display: flex;
     margin:0 auto;
     flex-flow: row wrap;
+}
+table{
+  /* font-family: var(--main-font); */
+  border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    margin: 0 auto;
+    /* color: white; */
+  padding: 20px;
+  font-size: 1.4rem !important;
+  max-width: 80rem;
+  width: 50%;
+  margin: 0 auto;
+  /* width: ; */
+  /* margin: 0 auto; */
 }
 h1{
   font-family:var(--font-bold);

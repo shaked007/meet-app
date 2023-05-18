@@ -56,6 +56,7 @@ export default {
 .spinner-container{
   text-align: center;
 }
+
 .knasim-flex{
   width: 100%;
       gap: 15px;
