@@ -1,7 +1,7 @@
 <template>
   <div class="extra-card-container">
                   <h6> האם יש צורך בחברת  הגברה/התקנה ?</h6> 
-                <q-option-group
+                <q-option-group :disable="isDisabled"
                 @update:model-value="updateParent"
                 ref="is-dovrim-clock"
                 color="rgb(74,87,96)"
@@ -13,7 +13,7 @@
         <div class="dir"> 
             <h6>  האם יש צורך בשעון דוברים ?  </h6> 
 
-            <q-option-group
+            <q-option-group :disable="isDisabled"
             @update:model-value="updateParent"
             ref='is-dovrim-clock'
                   left-label
@@ -24,7 +24,7 @@
       
             />
         </div>
-          <q-input @update:model-value="updateParent" v-model="extraModel['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
+          <q-input :disable="isDisabled"  @update:model-value="updateParent" v-model="extraModel['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
 
     
   </div>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-    props:['extra'],
+    props:['extra',"isDisabled"],
     data(){
         return{
             extraModel:{},

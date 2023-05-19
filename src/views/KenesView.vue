@@ -4,7 +4,8 @@
   <br>
  <h1> כנס </h1>
 
- <h6 >מצב עריכה </h6>
+ <h6  v-if="!isReadOnly" >מצב עריכה </h6>
+ <h6  v-else>לפני שמאשרים </h6>
 
  <div class="spinner-class">
 
@@ -19,20 +20,24 @@
   <div class="flex-subjects" v-if="isAuthenticated  && isFinished">
     <h4> פרטים כללים</h4>
 
-      <GeneralCard :general="report.general" @on-edit="updateKenes" />
+      <GeneralCard :isDisabled="isReadOnly" :general="report.general" @on-edit="updateKenes" />
           <h4> פרטים נוספים</h4>
 
-    <ExtraCard :extra="report.final" @on-edit="updateKenes" />
+    <ExtraCard :isDisabled="isReadOnly"  :extra="report.final" @on-edit="updateKenes" />
           <h4> אנשי קשר</h4>
 
-    <PersonCard v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
+    <PersonCard  :isDisabled="isReadOnly" v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
 
   </div>
-  <div class="btns-flex" v-if="isAuthenticated  && isFinished" >
+  <div    class="btns-flex" v-if="isAuthenticated  && isFinished && !isReadOnly" >
      <q-btn color="red" @click="handleDelete" label="מחק כנס" icon-right="delete" />
     <q-btn @click="handleEdit" color="green" label="סיים עריכה" icon-right="mdi-check" />
-
  </div>
+  <div  class="btns-flex" v-if="isAuthenticated  && isFinished  && isReadOnly" >
+     <q-btn color="red" @click="handleDelete" label="מחק בקשה" icon-right="delete" />
+    <q-btn @click="handleAuthorize" color="green" label="אשר כנס" icon-right="mdi-check" />
+ </div>
+
 </template>
 
 <script>
@@ -58,6 +63,7 @@ export default {
     currentDate:'',
     isFinished:false,
       check:true,
+      isReadOnly :  window.location.href.includes('pending'),
       isAuthenticated:true,
       drivesObject:{},
       contactsObject:{},
@@ -83,6 +89,28 @@ export default {
     
   },
   methods:{
+    async handleAuthorize(){
+          this.$swal({title:'מאשר פריט',text:'אנא המתן'})
+                this.$swal.showLoading()
+
+         const res  = await axios.post(this.updateUrl,JSON.stringify({'_id':this.report['_id'],object:{isAuthorized:true}}),{
+              headers:{
+                Authorization:`Bearer ${sessionStorage.getItem('token')}`
+              }
+             })
+         if (res.status == 200){
+                   this.$swal.hideLoading()
+            this.$swal({text:'הפריט אושר בהצלחה',timer:1000})
+         
+             if (this.isReadOnly){
+              this.$router.push('/admin/pending')
+            }else{
+            this.$router.push('/admin')
+
+            }
+        }
+
+    },
     async handleDelete(){
        const outcome = await this.$swal({
           icon:'warning',
@@ -105,7 +133,12 @@ export default {
          if (res.status == 200){
                    this.$swal.hideLoading()
             this.$swal({text:'הפריט נמחק בהצלחה'})
+            if (this.isReadOnly){
+              this.$router.push('/admin/pending')
+            }else{
             this.$router.push('/admin')
+
+            }
         }
       }
     },
@@ -153,7 +186,7 @@ export default {
         this.personsObject['supply'] =  {icon:'mdi-account-cog',data:{...this.report.logistics.supply},job:'אחראי אספקת ריהוט'}
 
 
-        this.report.date = moment(new Date(this.report.date),'L', 'he').format("יום dddd  D/M/y");
+        // this.report.date = moment(new Date(this.report.date),'L', 'he').format("יום dddd  D/M/y");
            this.isAuthenticated = true;
            this.isFinished = true
         

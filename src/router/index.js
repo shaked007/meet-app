@@ -49,6 +49,11 @@ const routes = [
     component: ReportView
   },
   {
+    path: '/kenes/pending/:id',
+    name: ':id',
+    component: ReportView
+  },
+  {
     path: '/print-view',
     name: 'print-view',
     component: PrintView

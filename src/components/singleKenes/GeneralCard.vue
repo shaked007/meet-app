@@ -2,8 +2,8 @@
   <div class="general-card-container">
      <div class="flex-fields">
         
-                      <q-input lazy-rules="ondemand"   @update:model-value="updateParent" ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
-       <q-input @update:model-value="updateParent" lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to" :rules="typeSomethingRule" ref="date" :v-model="generalModel.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
+                      <q-input lazy-rules="ondemand" :disable="isDisabled"  @update:model-value="updateParent" ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+       <q-input :disable="isDisabled"  @update:model-value="updateParent" lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to" :rules="typeSomethingRule" ref="date" :v-model="generalModel.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>
           <q-icon name="access_time" class="cursor-pointer">
@@ -19,12 +19,12 @@
         </template>
       </q-input>
 
-                    <q-input lazy-rules="ondemand" @update:model-value="updateParent" ref="kenes-name" v-model="generalModel['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
+                    <q-input :disable="isDisabled"  lazy-rules="ondemand" @update:model-value="updateParent" ref="kenes-name" v-model="generalModel['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
         
          </div>
-           <q-input lazy-rules="ondemand" @update:model-value="updateParent" ref="location" v-model="generalModel.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
-                                                    <q-input @update:model-value="updateParent" lazy-rules="ondemand" ref="top-level" v-model="generalModel['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
-      <q-select lazy-rules="ondemand"   @update:model-value="updateParent"   :rules="typeSomethingRule" ref="secret-level" v-model="generalModel['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
+           <q-input :disable="isDisabled"  lazy-rules="ondemand" @update:model-value="updateParent" ref="location" v-model="generalModel.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
+                                                    <q-input :disable="isDisabled"  @update:model-value="updateParent" lazy-rules="ondemand" ref="top-level" v-model="generalModel['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
+      <q-select :disable="isDisabled"  lazy-rules="ondemand"   @update:model-value="updateParent"   :rules="typeSomethingRule" ref="secret-level" v-model="generalModel['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
   </div>
 </template>
 
@@ -54,8 +54,9 @@ handleRange(range){
 
         },
     },
-    props:['general'],
+    props:['general','isDisabled'],
     beforeMount(){
+        console.log(this.isDisabled)
         this.generalModel = {...this.general}
     }
 }

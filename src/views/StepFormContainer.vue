@@ -136,7 +136,9 @@ export default {
             storageData['final'] = {...this.formData['4']}
       
            this.formData = {...storageData}
-           this.formData['isAuzhorized'] = false;
+           this.formData['isAuthorized'] = false;
+            this.formData['date'] = new Date();
+            console.log(this.formData)
             this.$swal({title:'מעלה דוח',text:'אנא המתן'})
                 this.$swal.showLoading()
       const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData),{

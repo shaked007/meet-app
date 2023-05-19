@@ -40,6 +40,11 @@ export default {
         }
        })
        this.knasim = response.data
+       console.log(this.knasim)
+    this.knasim = this.knasim.filter(kenes=>{
+          return kenes.isAuthorized
+       })
+       console.log(this.knasim)
        this.isAuthenticated = true
     }
 }                                              
