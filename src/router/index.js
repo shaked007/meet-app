@@ -50,7 +50,7 @@ const routes = [
   },
   {
     path: '/kenes/pending/:id',
-    name: ':id',
+    name: ':id pending',
     component: ReportView
   },
   {

@@ -24,7 +24,7 @@ export default {
   data(){
     return{
       isAuthenticated:false,
-      getAllUrl:'/.netlify/functions/fetch_all',
+      getAuthorized:'/.netlify/functions/fetch_authorized',
       knasim:[],
     }
   },
@@ -34,16 +34,14 @@ export default {
     },
     async mounted(){
       
-       const response = await axios.get(this.getAllUrl,{
+       const response = await axios.get(this.getAuthorized,{
         headers:{
           Authorization:`Bearer ${sessionStorage.getItem('token')}`
         }
        })
        this.knasim = response.data
        console.log(this.knasim)
-    this.knasim = this.knasim.filter(kenes=>{
-          return kenes.isAuthorized
-       })
+   
        console.log(this.knasim)
        this.isAuthenticated = true
     }

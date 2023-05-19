@@ -57,7 +57,7 @@ export default {
       isAuthenticated:false,
     deleteUrl:"/.netlify/functions/delete_report",
       updateUrl:"/.netlify/functions/update_report",
-      getAllUrl:'/.netlify/functions/fetch_all',
+      getUnauthorized:'/.netlify/functions/fetch_unauthorized',
       knasim:[],
     }
   },
@@ -119,16 +119,13 @@ export default {
  
     async mounted(){
       
-       const response = await axios.get(this.getAllUrl,{
+       const response = await axios.get(this.getUnauthorized,{
         headers:{
           Authorization:`Bearer ${sessionStorage.getItem('token')}`
         }
        })
        this.knasim = response.data
-       this.knasim = this.knasim.filter((kenes)=>{
-          return !kenes.isAuthorized
-       })
-
+      
        this.knasim.forEach(kenes=>{
             kenes.general.date.from = moment(new Date( kenes.general.date.from),'L', 'he').format("D/M")
            kenes.general.date.to = moment(new Date( kenes.general.date.to),'L', 'he').format("D/M")
