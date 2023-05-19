@@ -3,12 +3,12 @@
      <div class="flex-fields">
         
                       <q-input lazy-rules="ondemand" :disable="isDisabled"  @update:model-value="updateParent" ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
-       <q-input :disable="isDisabled"  @update:model-value="updateParent" lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to" :rules="typeSomethingRule" ref="date" :v-model="generalModel.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
+       <q-input :disable="isDisabled" lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to"  :rules="typeSomethingRule" ref="date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy ref="prox"  transition-show="scale" transition-hide="scale">
-                              <q-date @range-end="handleRange"   range  v-model="generalModel.date">
+          <q-icon name="access_time"    class="cursor-pointer">
+            <q-popup-proxy  @show="func" ref="prox"  transition-show="scale" transition-hide="scale">
+                              <q-date ref="edit" @range-end="handleRange"   @range-start="handleRangeStart" range  v-model="generalModel.date">
 
                 <div class="row items-center justify-end">
                   <q-btn v-close-popup label="סגור" color="primary"  />
@@ -39,6 +39,15 @@ export default {
         }
     },
     methods:{
+        func(){
+            console.log('2')
+ 
+        },
+        handleRangeStart(){
+    
+            // this.$refs.edit.setEditingRange(0,0)
+
+        },
         updateParent(){
           console.log(this.generalModel)
           this.$emit("on-edit",this.generalModel,"general")
@@ -46,13 +55,18 @@ export default {
         },
 handleRange(range){
             this.$refs.prox.hide()
-      
+
             if(typeof this.generalModel.date == 'string'){
                 this.generalModel.date = {from:this.generalModel.date,to:this.generalModel.date}
             } 
             this.$emit("on-edit",this.generalModel,"general")
 
         },
+    },
+    mounted(){
+        console.log(this.$refs)
+                    // this.$refs.edit.setEditingRange(0,0)
+
     },
     props:['general','isDisabled'],
     beforeMount(){
