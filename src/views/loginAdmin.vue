@@ -34,21 +34,20 @@ export default {
         })
          if(!localStorage.getItem('gotrue.user')){
             netlifyIdentity.open("login");
-        }else{
-            netlifyIdentity.close()
-            const parsedResponse = await this.asyncParse(localStorage.getItem('gotrue.user'))
-            sessionStorage.setItem('token',parsedResponse.token.access_token)
-            // if()
             const urlArr= window.location.href
-            console.log(urlArr)
             if(urlArr.includes('redirect')){
-                console.log( urlArr.split('=')[1])
                 window.location.href = urlArr.split('=')[1]
-
             }else{
                  this.$router.push('/admin')
 
             }
+        }else{
+            netlifyIdentity.close()
+            const parsedResponse = await this.asyncParse(localStorage.getItem('gotrue.user'))
+            sessionStorage.setItem('token',parsedResponse.token.access_token)
+                             this.$router.push('/admin')
+
+       
 
 
         }
