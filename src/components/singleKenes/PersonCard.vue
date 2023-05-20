@@ -20,7 +20,12 @@
                                        <q-input    :disable="isDisabled" @update:model-value="updateParent" lazy-rules="ondemand"  ref="supply-job" v-model="personModel['job']"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
  <q-input :disable="isDisabled"   @update:model-value="updateParent"  lazy-rules="ondemand" type="number" ref="supply-phone" v-model="personModel['phone']"   dir="rtl" no-error-icon label="טלפון נייד"  :error="false" />
  <q-input :disable="isDisabled"   @update:model-value="updateParent" lazy-rules="ondemand" type="number" ref="supply-phone-office" v-model="personModel['phone-office']"   dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
-           
+<div v-if="$isMobile" class="flex-links">
+ 
+    <a class="whatsapp" :href="`https://wa.me/${personModel['phone']}`" > <i class="bi bi-whatsapp"></i> </a>
+    <a class="phone" :href="`tel:${personModel['phone']}`" > <i class="bi bi-telephone-fill"></i>   </a>
+     <a class="sms" :href="`sms:${personModel['phone']}`" > <i class="bi bi-chat-left-text"></i></a>
+      </div>
           </q-card-section>
         </q-card>
       </q-expansion-item>
@@ -48,4 +53,35 @@ export default {
 
 <style scoped>
 
+.flex-links{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+.flex-links a{
+   width: 40px;
+    height: 40px;
+    margin-right: 0.538rem;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+    z-index: 1;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    color: white;
+    transition: all 0.2s;
+}
+.flex-links a i{
+    font-size: 18px;
+}
+.whatsapp{
+    background-color: #1FB381;
+}
+.phone{
+    background-color: blue;
+}
+.sms{
+    background-color: rgb(48, 121, 185);
+}
 </style>
