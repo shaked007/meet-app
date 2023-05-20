@@ -40,8 +40,11 @@ export default {
             sessionStorage.setItem('token',parsedResponse.token.access_token)
             // if()
             const urlArr= window.location.href
+            console.log(urlArr)
             if(urlArr.includes('redirect')){
+                console.log( urlArr.split('=')[1])
                 window.location.href = urlArr.split('=')[1]
+
             }else{
                  this.$router.push('/admin')
 
