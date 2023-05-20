@@ -12,9 +12,10 @@ const handler = async (event) => {
         const results = await collection.insertOne(
           JSON.parse(event.body)
          )
+         
         return {
             statusCode: 200,
-            body: event.body,
+            body:JSON.stringify(results),
         }
     } catch (error) {
         return { statusCode: 500, body: error.message }

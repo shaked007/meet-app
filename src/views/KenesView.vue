@@ -82,7 +82,9 @@ export default {
     }
   },
   beforeMount(){
-    
+      if(!localStorage.getItem('gotrue.user')){
+        window.location.href = `https://meet-app383.netlify.app/#/login?redirect=${window.location.href}` 
+      }
        
         this.getReportById()
     

@@ -142,10 +142,12 @@ export default {
             this.$swal({title:'מעלה דוח',text:'אנא המתן'})
                 this.$swal.showLoading()
       const postResponse = await axios.post(this.postUrl,JSON.stringify(this.formData),{
+
         headers:{
             'Content-Type': 'application/json'
         }
       })
+
       if(postResponse.status== 200){
           
 
@@ -153,6 +155,7 @@ export default {
                     'contact-email':this.formData['final']['contact-email'],
                     'kenes-name':this.formData['general']['kenes-name'],
                     'megish':this.formData['tohen']['megish']['full-name'],
+                    'id':postResponse.data.insertedId,
                     'submitted-date':moment(new Date(),'L', 'he').format("יום dddd  D/M/y")
             }))
             if(mailResponse.status == 200){
