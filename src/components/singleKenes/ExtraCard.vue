@@ -24,7 +24,7 @@
       
             />
         </div>
-          <q-input :disable="isDisabled"  @update:model-value="updateParent" v-model="extraModel['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
+          <q-input  :borderless="isDisabled"  :disable="isDisabled"  @update:model-value="updateParent" v-model="extraModel['contact-email']" ref="email" type="email"  :rules="['email']"  lazy-rules="ondemand" label=" אימייל"/> 
 
     
   </div>

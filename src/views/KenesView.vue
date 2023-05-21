@@ -3,10 +3,25 @@
   <br>
   <br>
  <h1> כנס </h1>
+   <div  class="options-icons"  v-if="isAuthenticated  && isFinished  && !isPendingView && isEditing && $isMobile"  >
+     <q-btn size="md" round  color="red" @click="cancelEdit"  icon="mdi-window-close" />
+    <q-btn size="md" round @click="handleEdit" color="green"  icon="mdi-check" />
+ </div>
+ <div class="options-icons" v-if="isAuthenticated  && isFinished  && !isPendingView && !isEditing && $isMobile"  >
+       <q-btn size="md" round  color="blue" @click="handleEditStart"  icon="edit" />
 
- <h6  v-if="!isReadOnly" >מצב עריכה </h6>
- <h6  v-else>לפני שמאשרים </h6>
-
+   </div>
+ <footer v-if="isAuthenticated  && isFinished  && !isPendingView && isEditing && !$isMobile">
+  <div  class="fixed-btns-flex"  >
+     <q-btn size="lg" color="red" @click="cancelEdit" label="בטל" icon-right="mdi-window-close" />
+    <q-btn size="lg" @click="handleEdit" color="green" label="שמור שינויים" icon-right="mdi-check" />
+ </div>
+ </footer>
+ <!-- <h6  v-if="!isPendingView && isEditing" >מצב עריכה </h6> -->
+ <h6  v-if="isPendingView">לפני שמאשרים </h6>
+ <div v-if="!$isMobile" class="edit-btn-container"> 
+     <q-btn :disable="isEditing" :color="isEditing ? 'grey':'blue'" @click="handleEditStart" label="התחל עריכה" icon-right="edit" />
+</div>
  <div class="spinner-class">
 
     <v-progress-circular v-if="!isFinished && spinnerStarter"
@@ -20,20 +35,19 @@
   <div class="flex-subjects" v-if="isAuthenticated  && isFinished">
     <h4> פרטים כללים</h4>
 
-      <GeneralCard :isDisabled="isReadOnly" :general="report.general" @on-edit="updateKenes" />
+      <GeneralCard :isDisabled="!isEditing" :general="report.general" @on-edit="updateKenes" :key="keyFirst" />
           <h4> פרטים נוספים</h4>
 
-    <ExtraCard :isDisabled="isReadOnly"  :extra="report.final" @on-edit="updateKenes" />
+    <ExtraCard :isDisabled="!isEditing "  :extra="report.final" @on-edit="updateKenes" :key="keySecond" />
           <h4> אנשי קשר</h4>
 
-    <PersonCard  :isDisabled="isReadOnly" v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
+    <PersonCard  :isDisabled="!isEditing " v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
 
   </div>
-  <div    class="btns-flex" v-if="isAuthenticated  && isFinished && !isReadOnly" >
+  <div    class="btns-flex" v-if="isAuthenticated  && isFinished && !isPendingView" >
      <q-btn color="red" @click="handleDelete" label="מחק כנס" icon-right="delete" />
-    <q-btn @click="handleEdit" color="green" label="סיים עריכה" icon-right="mdi-check" />
  </div>
-  <div  class="btns-flex" v-if="isAuthenticated  && isFinished  && isReadOnly" >
+  <div  class="btns-flex" v-if="isAuthenticated  && isFinished  && isPendingView" >
      <q-btn color="red" @click="handleDelete" label="מחק בקשה" icon-right="delete" />
     <q-btn @click="handleAuthorize" color="green" label="אשר כנס" icon-right="mdi-check" />
  </div>
@@ -58,13 +72,19 @@ export default {
   name:"ReportView",
   data(){
     return{
+      keyFirst:1,
+      keySecond:2,
+      keyThird:3,
+      keyFourth:4,
       personsObject:{},
+      personBackupObject:{},
       spinnerStarter:false,
     currentDate:'',
     isFinished:false,
       check:true,
-      
-      isReadOnly :  window.location.href.includes('pending'),
+      backupKenesObject:{},
+      isPendingView: window.location.href.includes('pending'),
+      isEditing :  false,
       isAuthenticated:true,
       drivesObject:{},
       contactsObject:{},
@@ -92,6 +112,25 @@ export default {
     
   },
   methods:{
+    cancelEdit(){
+      this.isEditing = false
+      this.report.general = this.backupKenesObject.general
+      this.report.tohen= this.backupKenesObject.tohen
+      this.report.logistics = this.backupKenesObject.logistics
+      this.report.final =this.backupKenesObject.final
+      console.log(this.report)
+      this.keyFirst++
+      this.keySecond++
+  this.personsObject ={...this.personBackupObject}
+    },
+    handleEditStart(){
+        this.isEditing = true;
+        this.backupKenesObject = {...this.report}
+          this.personBackupObject['megish'] = {icon:'mdi-human-greeting-proximity',data:{...this.report.tohen.megish},job:'מגיש הבקשה'}
+        this.personBackupObject['leader'] = {icon:'mdi-account-star',data:{...this.report.tohen.leader},job:'מוביל חומרים'}
+        this.personBackupObject['approver'] = {icon:'mdi-account-check',data:{...this.report.logistics.approver},job:'גורם מאשר אישורי כניסה'}
+        this.personBackupObject['supply'] =  {icon:'mdi-account-cog',data:{...this.report.logistics.supply},job:'אחראי אספקת ריהוט'}
+    },
     async handleAuthorize(){
           this.$swal({title:'מאשר פריט',text:'אנא המתן'})
                 this.$swal.showLoading()
@@ -105,7 +144,7 @@ export default {
                    this.$swal.hideLoading()
             this.$swal({text:'הפריט אושר בהצלחה',timer:1000})
          
-             if (this.isReadOnly){
+             if (this.isPendingView){
               this.$router.push('/admin/pending')
             }else{
             this.$router.push('/admin')
@@ -136,7 +175,7 @@ export default {
          if (res.status == 200){
                    this.$swal.hideLoading()
             this.$swal({text:'הפריט נמחק בהצלחה'})
-            if (this.isReadOnly){
+            if (this.isEditing){
               this.$router.push('/admin/pending')
             }else{
             this.$router.push('/admin')
@@ -199,7 +238,55 @@ export default {
 </script>
 
 <style scoped> 
+footer{
+  position: fixed;
+  bottom: 0%;
+  z-index: 3;
+  height: 80px;
+  width: 100%;
+  background-color:var(--main-clr);
+}
+.fixed-btns-flex{
+  margin: 0 auto;
+  height: 100%;
+  gap: 20px;
+  align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50rem;
+}
+.edit-btn-container{
+  /* width: 30px; */
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+}
 @media(max-width:480px){
+  
+
+.options-icons {
+    align-items: center;
+    bottom: 4rem;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    right: 2rem;
+    position: fixed;
+    z-index: 99999;
+}
+  .flex-subjects{
+  display: flex;
+  width: 90% !important;
+  margin:0 auto;
+  max-width:none !important;
+  justify-content: center;
+  flex-direction: column;;
+  flex-wrap: wrap;
+  min-width: 310px !important;
+  /* gap: 30px; */
+  margin-bottom: 20px;
+}
    h6{
             margin-top: 20px !important;
         margin-bottom: 20px !important;
@@ -225,7 +312,7 @@ h6{
 }
 h1{
   font-family:var(--font-bold);
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
   text-align: center;
 }
 .flex-subjects{

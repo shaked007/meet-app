@@ -27,8 +27,6 @@ export default {
         });
         //event for what happens when user enter credentials
         netlifyIdentity.on("login", async (user)=>{
-            
-
             const token =  await user.jwt()
             sessionStorage.setItem("token",token)
            const urlArr= window.location.href
@@ -45,11 +43,10 @@ export default {
             
         //if the user is authenticated
         }else{
-            
             netlifyIdentity.close()
             const parsedResponse = await this.asyncParse(localStorage.getItem('gotrue.user'))
             sessionStorage.setItem('token',parsedResponse.token.access_token)
-                             this.$router.push('/admin')
+            this.$router.push('/admin')
 
        
 
