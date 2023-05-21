@@ -25,8 +25,12 @@
                     </thead>
                     <tbody> 
                         <tr v-for="kenes in knasim" :key="kenes['_id']">
-                          <td v-if="!$isMobile" >     <q-btn :size="'sm'"  color="red" @click="handleDelete(kenes['_id'],kenes.general['kenes-name'])" label="מחק בקשה" icon-right="delete" />
-                   <q-btn @click="handleAuthorized(kenes['_id'])" :size="'sm'"  color="green" label="אשר בקשה" icon-right="mdi-check" /> </td>
+                          <td v-if="!$isMobile" >   
+                            <div class="action-btn-flex"> 
+                            <q-btn :size="'md'" round color="red" @click="handleDelete(kenes['_id'],kenes.general['kenes-name'])"  icon="delete" />
+                   <q-btn @click="handleAuthorized(kenes['_id'])" round :size="'md'"  color="green" icon="mdi-check" />
+                            </div>
+                  </td>
                                                             <td >{{kenes.general['kenes-name']}} </td>
                               <td v-if="kenes.general.date.to  != kenes.general.date.from">     {{kenes.general.date.to}} - {{kenes.general.date.from}} 
                               </td>
@@ -139,6 +143,11 @@ export default {
 </script>
 
 <style scoped>
+.action-btn-flex{
+  display:flex;
+  gap:10px;
+  justify-content: center;
+}
 h3{
   text-align: center;
 }

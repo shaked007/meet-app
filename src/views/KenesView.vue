@@ -63,6 +63,7 @@ export default {
     currentDate:'',
     isFinished:false,
       check:true,
+      
       isReadOnly :  window.location.href.includes('pending'),
       isAuthenticated:true,
       drivesObject:{},

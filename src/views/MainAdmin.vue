@@ -41,6 +41,11 @@ export default {
        })
        this.knasim = response.data
        console.log(this.knasim)
+       this.knasim.sort((a,b)=>new Date(a.general.date.from).getTime()-new Date(b.general.date.from).getTime());
+       this.knasim = this.knasim.filter((kenes)=>{
+        return new Date(kenes.general.date.from) > new Date() ||  new Date(kenes.general.date.to) > new Date() })
+
+
    
        console.log(this.knasim)
        this.isAuthenticated = true
