@@ -1,8 +1,12 @@
 <template>
-<Nav/>  <br>
+<Nav/> 
+<div class="non-printable">
+ <br>
   <br>
   <br>
+</div>
  <h1> כנס </h1>
+
    <div  class="options-icons"  v-if="isAuthenticated  && isFinished  && !isPendingView && isEditing && $isMobile"  >
      <q-btn size="md" round  color="red" @click="cancelEdit"  icon="mdi-window-close" />
     <q-btn size="md" round @click="handleEdit" color="green"  icon="mdi-check" />
@@ -20,6 +24,8 @@
  <!-- <h6  v-if="!isPendingView && isEditing" >מצב עריכה </h6> -->
  <h6  v-if="isPendingView">לפני שמאשרים </h6>
  <div v-if="!$isMobile && !isPendingView" class="edit-btn-container"> 
+       <q-btn :disable="isEditing" flat  :color="isEditing ? 'grey':'black'" @click="print" label="הדפס" icon-right="print" />
+
      <q-btn :disable="isEditing" :color="isEditing ? 'grey':'blue'" @click="handleEditStart" label="התחל עריכה" icon-right="edit" />
 </div>
  <div class="spinner-class">
@@ -40,8 +46,13 @@
 
     <ExtraCard :isDisabled="!isEditing "  :extra="report.final" @on-edit="updateKenes" :key="keySecond" />
           <h4> אנשי קשר</h4>
+    <div class="non-printable-persons"> 
+    <PersonCard :isOpened="false" :isDisabled="!isEditing " v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
+    </div>
+        <div class="printable-persons">
+        <PersonCard :isOpened="true" :isDisabled="!isEditing " v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
+        </div>
 
-    <PersonCard  :isDisabled="!isEditing " v-for="person in Object.keys(personsObject)" :job="personsObject[person].job" :type="person" :person="personsObject[person].data" :icon="personsObject[person].icon" :key="person" @on-edit="updateKenes" /> 
 
   </div>
   <div    class="btns-flex" v-if="isAuthenticated  && isFinished && !isPendingView" >
@@ -112,6 +123,9 @@ export default {
     
   },
   methods:{
+  print(){
+    window.print()
+  },
     cancelEdit(){
       this.isEditing = false
       this.report.general = this.backupKenesObject.general
@@ -238,6 +252,29 @@ export default {
 </script>
 
 <style scoped> 
+@media print{
+  *{
+    opacity: 1 !important;
+    color: black !important;
+  }
+
+  .non-printable-persons{
+    display: none !important;
+  }
+  .edit-btn-container{
+    display: none !important;
+  }
+  .non-printable{
+    display: none !important;
+  }
+  .printable-persons{
+  display: block !important;
+}
+
+}
+.printable-persons{
+  display: none;
+}
 footer{
   position: fixed;
   bottom: 0%;
@@ -257,6 +294,7 @@ footer{
 }
 .edit-btn-container{
   /* width: 30px; */
+  gap: 20px ;
   display: flex;
   justify-content: center;
   /* margin: 0 auto; */

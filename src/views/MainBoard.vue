@@ -45,7 +45,8 @@ export default {
       if( kenes.general.date.from != kenes.general.date.to){
           toDate.setDate(toDate.getDate() + 1)
       }
-        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate}
+        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate,borderColor:'rgb(24, 114, 150)',backgroundColor: 'rgb(24, 114, 150)'
+}
       })
       console.log( this.calendarOptions.events)
        this.isAuthenticated = true
@@ -66,7 +67,7 @@ export default {
           buttonText: {
         today: 'היום' // Set the Hebrew translation for "Today"
       },
-        hiddenDays:[6,7],
+        hiddenDays:[6,5],
         direction:'rtl',
         plugins: [ dayGridPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
@@ -87,6 +88,9 @@ export default {
 </script>
 
 <style >
+.fc-h-event .fc-event-main:hover {
+  cursor: pointer;
+}
 .spinner-container{
   text-align: center;
 }

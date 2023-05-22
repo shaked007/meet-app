@@ -33,6 +33,15 @@ export default {
 </script>
 
 <style scoped>
+@media print{
+  nav{
+    display: none !important;
+
+  }
+  .mobile-flex{
+    display: none !important;
+  }
+}
 @media(max-width:480px){
   .mobile-flex{
     background-color: var(--main-clr);
