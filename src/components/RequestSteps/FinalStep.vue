@@ -30,7 +30,7 @@
             :rules="typeSomethingRule"
             />
         </div>
-          <q-input v-model="modelObject['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור עמך קשר"  :rules="['email']"  lazy-rules="ondemand" label="הכנס אימייל"/>
+          <q-input v-model="modelObject['contact-email']" ref="email" type="email" hint="דרך אימייל זה ניצור קשר שקיבלנו את הבקשה"   lazy-rules="ondemand" label="הכנס אימייל"/>
 
     </div>
     

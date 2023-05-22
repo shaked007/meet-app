@@ -9,11 +9,11 @@
 
           <q-input lazy-rules="ondemand"  type="number" ref="megish-personal-number" :rules="typeSomethingRule" v-model="modelObject.megish['personal-number']" dir="rtl" class="direction-class" label="מספר אישי" />
 
-                    <q-input lazy-rules="ondemand"  ref="megish-level" v-model="modelObject.megish['level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="דרגה"  :error="false" />
+                    <q-input lazy-rules="ondemand"  ref="megish-level" v-model="modelObject.megish['level']"   dir="rtl" no-error-icon label="דרגה"  :error="false" />
                    
-                                       <q-input lazy-rules="ondemand"  ref="megish-job" v-model="modelObject.megish['job']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
+                                       <q-input lazy-rules="ondemand"  ref="megish-job" v-model="modelObject.megish['job']"   dir="rtl" no-error-icon label="תפקיד"  :error="false" />
  <q-input lazy-rules="ondemand" type="number" ref="megish-phone" v-model="modelObject.megish['phone']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון נייד"  :error="false" />
- <q-input lazy-rules="ondemand" type="number" ref="megish-phone-office" v-model="modelObject.megish['phone-office']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
+ <q-input lazy-rules="ondemand" type="number" ref="megish-phone-office" v-model="modelObject.megish['phone-office']"   dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
 
 
             <h4>מוביל חומרים </h4>
@@ -21,11 +21,11 @@
 
   <q-input lazy-rules="ondemand"  type="number" ref="leader-personal-number" :rules="typeSomethingRule" v-model="modelObject.leader['personal-number']" dir="rtl" class="direction-class" label="מספר אישי" />
 
-                    <q-input lazy-rules="ondemand"  ref="leader-level" v-model="modelObject.leader['level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="דרגה"  :error="false" />
+                    <q-input lazy-rules="ondemand"  ref="leader-level" v-model="modelObject.leader['level']"  dir="rtl" no-error-icon label="דרגה"  :error="false" />
                    
-                                       <q-input lazy-rules="ondemand"  ref="leader-job" v-model="modelObject.leader['job']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
+                                       <q-input lazy-rules="ondemand"  ref="leader-job" v-model="modelObject.leader['job']"   dir="rtl" no-error-icon label="תפקיד"  :error="false" />
  <q-input lazy-rules="ondemand" type="number" ref="leader-phone" v-model="modelObject.leader['phone']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון נייד"  :error="false" />
- <q-input lazy-rules="ondemand" type="number" ref="leader-phone-office" v-model="modelObject.leader['phone-office']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
+ <q-input lazy-rules="ondemand" type="number" ref="leader-phone-office" v-model="modelObject.leader['phone-office']"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
         <div> 
             
         </div>

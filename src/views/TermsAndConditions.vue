@@ -20,9 +20,9 @@
 <p>תיאום המיקום והאולם באחריות מוביל הכנס. </p>
 <p class="first"> אם  נדרשות עמדות  רישום, באחריות מוביל הכנס להעביר דיסק עם רשימת המשתתפים עפ"  הפורמט  המדויק.  </p>
 <div class="inputs-container">
-    <form class="checbox-forms" method="GET" @submit.stop.prevent="submit"  >
+    <form class="checbox-forms" method="GET" @submit.stop.prevent="submit" >
 <v-checkbox  required  class="checkboxes" size="3rem" label="הגשת טופס הבקשה תתבצע עד כשבועיים מתאריך הכנס"> </v-checkbox>
-<v-checkbox  required  class="checkboxes" size="3rem" > 
+<v-checkbox  required  class="checkboxes" size="3rem"> 
     <template v-slot:label>
         <div>
         הלבנות והשחרות של חומרים  <span class="font-class">  אינן באחריות גדוד   383 ! </span>
@@ -30,7 +30,7 @@
          </template>
 </v-checkbox>
 <v-checkbox  required  class="checkboxes" size="3rem" label="המחשבים בכנס יהיו ברמת הסיווג של הכנס"> </v-checkbox>
-<v-checkbox  required  class="checkboxes" size="3rem" label='אין לכתוב דברים מסווגים טופס הבקשה הנ"ל'> </v-checkbox>
+<v-checkbox  required  class="checkboxes" size="3rem" label='אין לכתוב דברים מסווגים בטופס הבקשה הנ"ל'> </v-checkbox>
 <router-link  class="route-back-btn" to="/" v-if="!$isMobile">  חזור</router-link>
 <button class="finish-terms-button" type="submit"  v-ripple>קראתי והבנתי</button>
 

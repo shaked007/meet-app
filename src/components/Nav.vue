@@ -5,7 +5,7 @@
     </router-link> 
     <div class="flex-links"> 
             <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
-                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
+                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת כנסים</router-link>
                  <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
     </div>
         <a  v-if="$isMobile" class="toggle-button" @click="isActive = !isActive">

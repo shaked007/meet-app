@@ -8,11 +8,11 @@
 
           <q-input lazy-rules="ondemand"  type="number" ref="approver-personal-number" :rules="typeSomethingRule" v-model="modelObject.approver['personal-number']" dir="rtl" class="direction-class" label="מספר אישי" />
 
-                    <q-input lazy-rules="ondemand"  ref="approver-level" v-model="modelObject.approver['level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="דרגה"  :error="false" />
+                    <q-input lazy-rules="ondemand"  ref="approver-level" v-model="modelObject.approver['level']"   dir="rtl" no-error-icon label="דרגה"  :error="false" />
                    
-                                       <q-input lazy-rules="ondemand"  ref="approver-job" v-model="modelObject.approver['job']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
+                                       <q-input lazy-rules="ondemand"  ref="approver-job" v-model="modelObject.approver['job']"   dir="rtl" no-error-icon label="תפקיד"  :error="false" />
  <q-input lazy-rules="ondemand" type="number" ref="approver-phone" v-model="modelObject.approver['phone']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון נייד"  :error="false" />
- <q-input lazy-rules="ondemand" type="number" ref="approver-phone-office" v-model="modelObject.approver['phone-office']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
+ <q-input lazy-rules="ondemand" type="number" ref="approver-phone-office" v-model="modelObject.approver['phone-office']"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
 
 
             <h4> אחראי אספקת ריהוט</h4>
@@ -20,11 +20,11 @@
 
   <q-input lazy-rules="ondemand"  type="number" ref="supply-personal-number" :rules="typeSomethingRule" v-model="modelObject.supply['personal-number']" dir="rtl" class="direction-class" label="מספר אישי" />
 
-                    <q-input lazy-rules="ondemand"  ref="supply-level" v-model="modelObject.supply['level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="דרגה"  :error="false" />
+                    <q-input lazy-rules="ondemand"  ref="supply-level" v-model="modelObject.supply['level']"   dir="rtl" no-error-icon label="דרגה"  :error="false" />
                    
-                                       <q-input lazy-rules="ondemand"  ref="supply-job" v-model="modelObject.supply['job']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
+                                       <q-input lazy-rules="ondemand"  ref="supply-job" v-model="modelObject.supply['job']"  dir="rtl" no-error-icon label="תפקיד"  :error="false" />
  <q-input lazy-rules="ondemand" type="number" ref="supply-phone" v-model="modelObject.supply['phone']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון נייד"  :error="false" />
- <q-input lazy-rules="ondemand" type="number" ref="supply-phone-office" v-model="modelObject.supply['phone-office']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
+ <q-input lazy-rules="ondemand" type="number" ref="supply-phone-office" v-model="modelObject.supply['phone-office']"  dir="rtl" no-error-icon label="טלפון משרד"  :error="false" />
         <div> 
             
         </div>
