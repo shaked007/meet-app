@@ -23,7 +23,7 @@
  </footer>
  <!-- <h6  v-if="!isPendingView && isEditing" >מצב עריכה </h6> -->
  <h6  v-if="isPendingView">לפני שמאשרים </h6>
- <div v-if="!$isMobile && !isPendingView" class="edit-btn-container"> 
+ <div v-if="!$isMobile && !isPendingView && isAuthenticated  && isFinished " class="edit-btn-container"> 
        <q-btn :disable="isEditing" flat  :color="isEditing ? 'grey':'black'" @click="print" label="הדפס" icon-right="print" />
 
      <q-btn :disable="isEditing" :color="isEditing ? 'grey':'blue'" @click="handleEditStart" label="התחל עריכה" icon-right="edit" />
@@ -252,10 +252,7 @@ export default {
 </script>
 
 <style scoped> 
-@media print{ 
- 
 
-}
 .printable-persons{
   display: none;
 }
