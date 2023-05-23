@@ -2,7 +2,6 @@
   <Nav :activeLink="'pending'" />
   <br>
   <br>
-  <br>
     <h1> ממתינים לאישור</h1>
     <div class="spinner-container" v-if="!isAuthenticated" >
        <v-progress-circular 
@@ -149,6 +148,7 @@ export default {
   justify-content: center;
 }
 h3{
+  font-size: 1.5rem;
   text-align: center;
 }
 .link-to-report{
@@ -246,10 +246,12 @@ table{
   /* width: ; */
   /* margin: 0 auto; */
 }
+
 h1{
+    font-size: 4rem;
+
   font-family:var(--font-bold);
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
-
 </style>

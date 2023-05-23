@@ -2,7 +2,6 @@
   <Nav :activeLink="'requests'" />
   <br>
   <br>
-  <br>
     <h1> רשימת כנסים</h1>
     <div class="spinner-container" v-if="!isAuthenticated" >
        <v-progress-circular 
@@ -74,9 +73,15 @@ export default {
     margin:0 auto;
     flex-flow: row wrap;
 }
+h3{
+  font-size: 1.5rem;
+  text-align: center;
+}
 h1{
+    font-size: 4rem;
+
   font-family:var(--font-bold);
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 

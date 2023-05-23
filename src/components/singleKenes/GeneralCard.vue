@@ -64,9 +64,7 @@ handleRange(range){
         },
     },
     mounted(){
-        console.log('red')
-        console.log(this.$refs)
-                    // this.$refs.edit.setEditingRange(0,0)
+   
 
     },
     props:['general','isDisabled'],

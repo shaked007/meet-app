@@ -252,24 +252,8 @@ export default {
 </script>
 
 <style scoped> 
-@media print{
-  *{
-    opacity: 1 !important;
-    color: black !important;
-  }
-
-  .non-printable-persons{
-    display: none !important;
-  }
-  .edit-btn-container{
-    display: none !important;
-  }
-  .non-printable{
-    display: none !important;
-  }
-  .printable-persons{
-  display: block !important;
-}
+@media print{ 
+ 
 
 }
 .printable-persons{

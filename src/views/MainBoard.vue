@@ -2,7 +2,6 @@
   <Nav :activeLink="'board'" />
 <br> 
 <br>
-<br>
 <h1 class="calendar-header"> לוח כנסים חודשי</h1>
 
     <div class="spinner-container" v-if="!isAuthenticated" >
@@ -88,6 +87,12 @@ export default {
 </script>
 
 <style >
+h1{
+  font-size: 4rem;
+  font-family:var(--font-bold);
+  margin-bottom: 2rem;
+  text-align: center;
+}
 .fc-h-event .fc-event-main:hover {
   cursor: pointer;
 }
