@@ -54,6 +54,17 @@ export default {
 
 <style scoped>
 @media(max-width:480px){
+  h3{
+  font-size: 3rem !important;
+  text-align: center;
+}
+h1{
+    font-size: 5rem !important;
+
+  font-family:var(--font-bold);
+  margin-bottom: 7rem !important;
+  text-align: center;
+}
 .knasim-flex{
   gap: 30px !important;
   justify-content: center;

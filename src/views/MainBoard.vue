@@ -95,7 +95,17 @@ export default {
 </script>
 
 <style >
-h1{
+@media(max-width:480px){
+
+.calendar-header{
+    font-size: 6rem !important;
+
+  font-family:var(--font-bold);
+  margin-bottom: 6rem !important;
+  text-align: center;
+}
+}
+.calendar-header{
   font-size: 4rem;
   font-family:var(--font-bold);
   margin-bottom: 2rem;
