@@ -114,7 +114,7 @@ body,html{
 :root{
   --main-font:openSans;
   --font-clr:  rgb(74,87,96);
-    --main-clr: rgba(24, 114, 150);
+    --main-clr: rgb(24, 114, 150);
     font-size: 16px;
     --font-bold:openSansBold;
   }

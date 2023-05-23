@@ -3,7 +3,6 @@
 <div class="non-printable">
  <br>
   <br>
-  <br>
 </div>
  <h1> כנס </h1>
 

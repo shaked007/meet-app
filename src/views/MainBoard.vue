@@ -53,6 +53,14 @@ export default {
   },
   data(){
     return{
+      colorsObject:{
+        'קשר"ר':'#364955',
+        'הרמטכ"ל':'#187296'
+        ,'סגן הרמטכ"ל':'#9AAEBB',
+        'ראש אג"ת':'#88633C',
+        'רח"ט תוה"ד':'#BF966D',
+        'אחר':'#8C5A7F'
+      },
       isAuthenticated:false,
       getAuthorized:'/.netlify/functions/fetch_authorized',
       calendarOptions: {
