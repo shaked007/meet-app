@@ -2,7 +2,6 @@
   <Nav :activeLink="'pending'" />
   <br>
   <br>
-  <br>
     <h1> ממתינים לאישור</h1>
     <div class="spinner-container" v-if="!isAuthenticated" >
        <v-progress-circular 
@@ -44,7 +43,7 @@
                              </tr>
                     </tbody>
                                     </table>
-        <h3 v-if="isAuthenticated && !knasim.length"> לא קיימות בקשות ממתינות כרגע</h3>
+        <h3 v-if="isAuthenticated && !knasim.length"> לא קיימות בקשות  </h3>
   <!-- <div class="knasim-flex" v-if="isAuthenticated">
         <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
     </div>  -->
@@ -150,6 +149,7 @@ export default {
 }
 h3{
   text-align: center;
+  font-size:1.5rem;
 }
 .link-to-report{
     display: inline-block;
@@ -247,8 +247,9 @@ table{
   /* margin: 0 auto; */
 }
 h1{
+  font-size: 4rem;
   font-family:var(--font-bold);
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
