@@ -4,9 +4,10 @@
       <img  :src="require('@/assets/logo.png')">
     </router-link> 
     <div class="flex-links"> 
-            <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
-                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת כנסים</router-link>
-                 <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
+            <router-link :class="activeLink =='history'? 'chosen': '' " to="/admin/history"><span  :class="activeLink == 'history'  ? 'bi bi-archive-fill' : 'bi bi-archive' "> </span> היסטוריית כנסים</router-link>
+            <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span :class="activeLink=='pending' ? 'bi bi-bell-fill' : 'bi bi-bell' "> </span> בקשות ממתינות</router-link>
+                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span :class="activeLink=='requests' ? 'bi bi-card-checklist-fill':'bi bi-card-checklist' "> </span>  רשימת כנסים</router-link>
+                 <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span :class="activeLink=='board'?'bi bi-calendar-fill':'bi bi-calendar'"> </span>  לוח כנסים</router-link>
     </div>
         <a  v-if="$isMobile" class="toggle-button" @click="isActive = !isActive">
           <span class="bar"></span>
@@ -15,9 +16,10 @@
         </a>
   </nav> 
   <div v-if="$isMobile && isActive" class="mobile-flex"> 
+      <router-link :class="activeLink =='history'? 'chosen': '' " to="/admin/history"><span class="bi bi-archive"> </span> היסטוריית כנסים</router-link>
       <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
-                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
-                 <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
+          <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
+          <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
   </div>
 </template>
 
@@ -41,6 +43,14 @@ export default {
   .mobile-flex{
     display: none !important;
   }
+}
+@media (max-width:1400px) and (min-width:481px) {
+  .flex-links a{
+
+        font-size: 1.1rem !important;
+        padding: 5px 20px !important;
+    
+}
 }
 @media(max-width:480px){
   .mobile-flex{

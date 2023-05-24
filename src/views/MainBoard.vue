@@ -38,13 +38,15 @@ export default {
         }
        })
        this.knasim = response.data
-      this.calendarOptions.events = this.knasim.map((kenes)=>{
+      this.calendarOptions.events = this.knasim.map((kenes,index)=>{
        const fromDate =  new Date(kenes.general.date.from)
        const toDate = new Date(kenes.general.date.to)
       if( kenes.general.date.from != kenes.general.date.to){
           toDate.setDate(toDate.getDate() + 1)
       }
-        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate,borderColor:'rgb(24, 114, 150)',backgroundColor: 'rgb(24, 114, 150)'
+        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate,
+        borderColor:index%2 ?'#364955' : 'rgb(24, 114, 150)',
+        backgroundColor: index%2 ? '#364955':'rgb(24, 114, 150)'
 }
       })
       console.log( this.calendarOptions.events)

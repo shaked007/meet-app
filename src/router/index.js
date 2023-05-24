@@ -9,8 +9,15 @@ import TermsAndConditions  from "../views/TermsAndConditions.vue"
 import MainAdmin from   "../views/MainAdmin.vue" 
 import MainPending from "../views/MainPending.vue" 
 import MainBoard from "../views/MainBoard.vue" 
+import History from "../views/MainHistory.vue" 
+
 
 const routes = [
+  {
+    path: '/admin/history',
+    name: 'history',
+    component: History
+  },
   {
     path: '/',
     name: 'home',
