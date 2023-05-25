@@ -112,9 +112,11 @@ body,html{
    margin:calc() !important;
 }
 :root{
+  --width-tables:1200px; 
+  
   --main-font:openSans;
   --font-clr:  rgb(74,87,96);
-    --main-clr: rgba(24, 114, 150);
+    --main-clr: rgb(24, 114, 150);
     font-size: 16px;
     --font-bold:openSansBold;
   }
@@ -198,7 +200,60 @@ body,html{
         
 
 }
-        .v-label{
+ .v-label{
   text-align: right !important;
+}
+@media print{
+   h4{
+    margin-top: 0.3rem !important;
+  }
+  h1{
+    margin-bottom: 0.8rem !important;
+  }
+  .btns-flex{
+    display: none !important;
+  }
+  *{
+    opacity: 1 !important;
+    color: black !important;
+  }
+
+  .non-printable-persons{
+    display: none !important;
+  }
+  .edit-btn-container{
+    display: none !important;
+  }
+  .non-printable{
+    display: none !important;
+  }
+  .printable-persons{
+  display: block !important;
+}
+  [dir="rtl"] .q-gutter-x-sm > *, [dir="rtl"] .q-gutter-sm > * {
+    margin-right: 16px !important;
+}
+  [dir="rtl"] .q-field__label {
+    right: 0 !important;
+    /* transform: translateX(0px) translateY(-10px) !important; */
+    transform-origin: right top !important;
+}
+  *{
+    opacity: 1 !important;
+    color: black !important;
+  }
+
+  .non-printable-persons{
+    display: none !important;
+  }
+  .edit-btn-container{
+    display: none !important;
+  }
+  .non-printable{
+    display: none !important;
+  }
+  .printable-persons{
+  display: block !important;
+}
 }
 </style>

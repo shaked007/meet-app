@@ -2,7 +2,7 @@
   <div class="general-card-container">
      <div class="flex-fields">
         
-                      <q-input lazy-rules="ondemand" :disable="isDisabled" :borderless="isDisabled"  @update:model-value="updateParent" ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+                      <q-input lazy-rules="ondemand"  :disable="isDisabled" :borderless="isDisabled"  @update:model-value="updateParent" ref="leader"    v-model="generalModel.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
        <q-input :disable="isDisabled"    :borderless="isDisabled"  lazy-rules="ondemand" :model-value="generalModel.date.from == generalModel.date.to ? generalModel.date.from :generalModel.date.from+ '-'+ generalModel.date.to"  :rules="typeSomethingRule" ref="date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>
@@ -64,9 +64,7 @@ handleRange(range){
         },
     },
     mounted(){
-        console.log('red')
-        console.log(this.$refs)
-                    // this.$refs.edit.setEditingRange(0,0)
+   
 
     },
     props:['general','isDisabled'],
@@ -78,7 +76,11 @@ handleRange(range){
 </script>
 
 <style scoped>
+@media print{
+
+}
 @media(max-width:480px){
+    
    .flex-fields{
     margin-bottom: 20px !important;
     display: flex;

@@ -153,6 +153,9 @@ export default {
 }
  }
   @media   (min-width: 480px) and (max-width:1400px) {
+    :root{
+    --width-tables :900px  !important;
+  }
      .melel-container{
         position: absolute;
         height: 50%;

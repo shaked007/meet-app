@@ -56,6 +56,17 @@ export default {
 
 <style scoped>
 @media(max-width:480px){
+  h3{
+  font-size: 3rem !important;
+  text-align: center;
+}
+h1{
+    font-size: 5rem !important;
+
+  font-family:var(--font-bold);
+  margin-bottom: 7rem !important;
+  text-align: center;
+}
 .knasim-flex{
   gap: 30px !important;
   justify-content: center;
@@ -78,8 +89,11 @@ h3{
     margin:0 auto;
     flex-flow: row wrap;
 }
+h3{
+  font-size: 1.5rem;
+  text-align: center;
+}
 h1{
-  font-size: 4rem;
   font-family:var(--font-bold);
   margin-bottom: 2rem;
   text-align: center;

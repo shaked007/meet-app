@@ -1,8 +1,9 @@
 <template>
-   <q-expansion-item
+   <q-expansion-item 
         expand-separator
         :icon="icon"
         :label="job"
+          :default-opened="isOpened"
       >
       <!-- mdi-account-check  -->
        <!-- mdi-truck-cargo-container  -->
@@ -34,17 +35,20 @@
 
 <script>
 export default {
-    props:["person","icon","job","type","isDisabled"],
+    props:["isOpened","person","icon","job","type","isDisabled"],
     data(){
         return{
         personModel:{}
     }},
+
     methods:{
+  
       updateParent(){
           this.$emit("on-edit",this.personModel,this.type)
             
         },
     },
+
     beforeMount(){
         this.personModel = {...this.person}
     }

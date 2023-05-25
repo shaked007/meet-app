@@ -148,6 +148,7 @@ export default {
   justify-content: center;
 }
 h3{
+  font-size: 1.5rem;
   text-align: center;
   font-size:1.5rem;
 }
@@ -161,6 +162,17 @@ h3{
     border-radius: 20px;
 }
 @media(max-width:480px){
+    h3{
+  font-size: 3rem !important;
+  text-align: center;
+}
+h1{
+    font-size: 6rem !important;
+
+  font-family:var(--font-bold);
+  margin-bottom: 6rem !important;
+  text-align: center;
+}
   .link-to-report{
     display: inline-block;
     font-size: 2rem !important;
@@ -246,11 +258,10 @@ table{
   /* width: ; */
   /* margin: 0 auto; */
 }
+
 h1{
-  font-size: 4rem;
   font-family:var(--font-bold);
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   text-align: center;
 }
-
 </style>

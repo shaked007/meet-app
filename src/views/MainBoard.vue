@@ -38,13 +38,16 @@ export default {
         }
        })
        this.knasim = response.data
-      this.calendarOptions.events = this.knasim.map((kenes)=>{
+      this.calendarOptions.events = this.knasim.map((kenes,index)=>{
        const fromDate =  new Date(kenes.general.date.from)
        const toDate = new Date(kenes.general.date.to)
       if( kenes.general.date.from != kenes.general.date.to){
           toDate.setDate(toDate.getDate() + 1)
       }
-        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate}
+        return {title:kenes.general['kenes-name'],id:kenes['_id'],allDay:true,start:fromDate,end:toDate,
+        borderColor:index%2 ?'#364955' : 'rgb(24, 114, 150)',
+        backgroundColor: index%2 ? '#364955':'rgb(24, 114, 150)'
+}
       })
       console.log( this.calendarOptions.events)
        this.isAuthenticated = true
@@ -52,6 +55,14 @@ export default {
   },
   data(){
     return{
+      colorsObject:{
+        'קשר"ר':'#364955',
+        'הרמטכ"ל':'#187296'
+        ,'סגן הרמטכ"ל':'#9AAEBB',
+        'ראש אג"ת':'#88633C',
+        'רח"ט תוה"ד':'#BF966D',
+        'אחר':'#8C5A7F'
+      },
       isAuthenticated:false,
       getAuthorized:'/.netlify/functions/fetch_authorized',
       calendarOptions: {
@@ -65,7 +76,7 @@ export default {
           buttonText: {
         today: 'היום' // Set the Hebrew translation for "Today"
       },
-        hiddenDays:[6,7],
+        hiddenDays:[6,5],
         direction:'rtl',
         plugins: [ dayGridPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
@@ -86,13 +97,6 @@ export default {
 </script>
 
 <style >
-h1{
-  font-size: 4rem;
-  font-family:var(--font-bold);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
 .spinner-container{
   text-align: center;
 }
