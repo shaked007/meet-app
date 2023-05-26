@@ -171,8 +171,22 @@ body,html{
         
       :root{ 
 
+  --width-tables:420px !important;
         font-size:5px !important;
       }
+ }
+
+ @media (max-width: 440px) 
+ {
+  :root{
+    --width-tables:360px !important;
+  }
+ }
+  @media (max-width: 370px) 
+ {
+  :root{
+    --width-tables:320px !important;
+  }
  }
 @media (min-width: 1000px) {
       .checbox-forms{

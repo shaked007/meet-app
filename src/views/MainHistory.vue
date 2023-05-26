@@ -5,15 +5,12 @@
     <h1>היסטוריית כנסים</h1>
       
     <div class="filtering-flex-categories">
-      <div class="flex-item"> 
+      <div v-if="!$isMobile" class="flex-item"> 
                     <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="filterModel['kenesName']"   dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
       </div>
-            <div  class="flex-item" > 
+      
 
-              <q-select  lazy-rules="ondemand" value='כולם'    ref="secret-level" v-model="filterModel['leader']" dir="rtl" :options="options" label='מוביל הכנס' />
-      </div>
-
-      <div  class="flex-item" > 
+      <div  class="flex-item grow-mobile" > 
 
             <q-input :disable="isDisabled"      lazy-rules="ondemand" :model-value="filterModel.date.from == filterModel.date.to ? filterModel.date.from :filterModel.date.from+ '-'+ filterModel.date.to"  ref="date"    dir="rtl" no-error-icon placeholder="כל התאריכים" >
 
@@ -32,15 +29,38 @@
       </q-input>
 
          </div>
- 
+       <div  class="flex-item" > 
+
+              <q-select  lazy-rules="ondemand" value='כולם'    ref="secret-level" v-model="filterModel['leader']" dir="rtl" :options="options" label='מוביל הכנס' />
+      </div>
        </div>    <div class="flex-btns-and-categories">
 
          <div v-if=" isAuthenticated" class="edit-btn-container"> 
+            <div v-if="$isMobile" class="flex-item grow-mobile "> 
+                    <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="filterModel['kenesName']"   dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
+      </div>
+      <div > 
        <q-btn  flat  @click="cleanFilter" label="נקה סינון"  />
 
-     <q-btn :color="'blue'" @click="handleEditStart" label="סינון" icon-right="edit" />
+     <q-btn :color="'blue'" @click="handleFilter" label="סינון" icon-right="edit" />
+      </div>
          </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="spinner-container" v-if="!isAuthenticated" >
        <v-progress-circular 
       indeterminate
@@ -48,6 +68,8 @@
       size="90"
     ></v-progress-circular>
 </div>
+
+
 <table v-if="isAuthenticated && knasim.length"> 
                     <thead>
                         <tr>
@@ -99,18 +121,63 @@ export default {
     }
   },
   methods:{
+    createNew(date){
+     var parts = date.split('/');
+  return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    ,
+    isBetweenDates(date){
+      if(!this.filterModel.date){
+        return true
+      }
+      console.log(this.filterModel.date.from)
+   const  modelFromDate =new Date(this.filterModel.date.from)
+    const modelToDate =  new Date(this.filterModel.date.to)
+
+    const isBetweenDateFrom= this.createNew(date.from)
+    const isBetweenDateTo =this.createNew(date.to)
+    
+    console.log('from',isBetweenDateFrom)
+        console.log('to',isBetweenDateTo)
+        console.log('MODEL',modelFromDate)
+    if(modelFromDate.getTime() == modelToDate.getTime()){
+   
+              console.log(modelFromDate.getTime() <= isBetweenDateTo.getTime(), modelFromDate.getTime() >= isBetweenDateFrom.getTime())
+
+       if((modelFromDate.getTime() <= isBetweenDateTo.getTime() && modelFromDate.getTime() >= isBetweenDateFrom.getTime())) {
+        return true;
+    }
+    return false;
+    }else if(isBetweenDateFrom.getTime() == isBetweenDateTo.getTime()){
+          if((isBetweenDateFrom.getTime() <= modelToDate.getTime() && isBetweenDateFrom.getTime() >= modelFromDate.getTime())) {
+        return true;
+    }
+    }else if(modelFromDate.getTime() <= isBetweenDateTo.getTime() && modelToDate.getTime() >= isBetweenDateFrom.getTime()){
+      return true
+
+    }
+
+  
+    },
+    handleFilter(){
+      this.knasim = this.knasim.filter((kenes)=>{
+        const fitlerName =  kenes.general['kenes-name'].includes(this.filterModel.kenesName.trim()) 
+        const filterLeader = kenes.general.leader == this.filterModel.leader || this.filterModel.leader =='כולם'
+        const filterDates  = this.isBetweenDates(kenes.general.date)
+        return  fitlerName && filterLeader && filterDates
+
+      })
+    },
     handleRange(range){
             this.$refs.prox.hide()
 
             if(typeof this.filterModel.date == 'string'){
                 this.filterModel.date = {from:this.filterModel.date,to:this.filterModel.date}
             } 
-            this.$emit("on-edit",this.generalModel,"general")
-
         },
     cleanFilter(){
         this.filterModel.date=''
-        this.filterModel.leader=''
+        this.filterModel.leader='כולם'
         this.filterModel.kenesName=''
         this.knasim = [...this.allKnasimBackup]
     },
@@ -131,9 +198,9 @@ export default {
        this.knasim = response.data
       
        this.knasim.forEach(kenes=>{
-            kenes.general.date.from = moment(new Date( kenes.general.date.from),'L', 'he').format("D/M")
-           kenes.general.date.to = moment(new Date( kenes.general.date.to),'L', 'he').format("D/M")
-            kenes.date = moment(new Date(kenes.date),'L', 'he').format("D/M");
+            kenes.general.date.from = moment(new Date( kenes.general.date.from),'L', 'he').format("D/M/Y")
+           kenes.general.date.to = moment(new Date( kenes.general.date.to),'L', 'he').format("D/M/Y")
+            kenes.date = moment(new Date(kenes.date),'L', 'he').format("D/M/Y");
 
         })
         this.allKnasimBackup = [...this.knasim]
@@ -157,9 +224,6 @@ table{
     text-align: center;
     padding: 0;
     table-layout: initial !important;
-  /* font-size: 3.4rem !important; */
-  /* width: 70% !important; */
-  /* min-width: 340px !important; */
     margin: 0 auto;
     color: white;
 }
@@ -191,13 +255,9 @@ table thead tr{
     display:block;
 }
 table thead tr th{
-  /* width: 25%; */
-  /* display: block; */
+
   color:black;
-    /* width: 80px; */
     text-align: center;
-    /* font-size: 1.2rem; */
-    /* border-bottom: 1px solid white; */
 }
 
 .flex-item{
@@ -223,6 +283,9 @@ h3{
     border-radius: 20px;
 }
 @media(max-width:480px){
+  .grow-mobile{
+    flex-grow: 1 !important;
+  }
     h3{
   font-size: 3rem !important;
   text-align: center;
@@ -243,12 +306,46 @@ h1{
     text-decoration: none;
     border-radius: 20px;
 }
-table{
-  table-layout: initial !important;
-  font-size: 3.4rem !important;
-  width: 90% !important;
-  min-width: 340px !important;
+
+table thead{
+  display: block;
+    width: var(--width-tables);
 }
+table tbody{
+    display: block;
+    width: var(--width-tables);
+    overflow: auto;
+    height: 320px;
+}
+table tbody tr{
+    display: block;
+    width: var(--width-tables);
+    border-bottom: 1px solid grey;
+
+}
+td,th{
+  width: calc(var(--width-tables)/4);
+  font-size: 2.5rem;
+  /* width: 25%; */
+}
+table thead tr{
+        width:100%;
+
+    text-align: right;
+    display:block;
+}
+table thead tr th{
+
+  color:black;
+    text-align: center;
+}
+
+
+
+
+
+
+
 
 
 }
@@ -292,6 +389,8 @@ td{
 }
 .edit-btn-container{
   display: flex;
+  width: 100%;
+  justify-content: space-between;
   gap: 20px;
   align-items: center;
 }

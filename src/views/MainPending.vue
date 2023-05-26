@@ -259,9 +259,12 @@ table{
   /* margin: 0 auto; */
 }
 
+
 h1{
+    font-size: 4rem;
+
   font-family:var(--font-bold);
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 </style>

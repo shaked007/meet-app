@@ -13,7 +13,7 @@
   <div class="knasim-flex" v-if="isAuthenticated && !knasim.length">
         <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
     </div> 
-    <h3 v-if="isAuthenticated && knasim.length">לא קיימים כנסים </h3>
+    <h3 v-if="isAuthenticated && !knasim.length">לא קיימים כנסים </h3>
 
 </template>
 
@@ -76,10 +76,7 @@ h1{
 .spinner-container{
   text-align: center;
 }
-h3{
-  text-align: center;
-  font-size:1.5rem;
-}
+
 .knasim-flex{
   width: 100%;
       gap: 15px;
@@ -93,10 +90,12 @@ h3{
   font-size: 1.5rem;
   text-align: center;
 }
+
 h1{
+    font-size: 4rem;
+
   font-family:var(--font-bold);
   margin-bottom: 2rem;
   text-align: center;
 }
-
 </style>

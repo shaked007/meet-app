@@ -97,6 +97,12 @@ export default {
 </script>
 
 <style >
+@media (max-width: 480px){
+  .calendar-header{
+    font-size: 6rem !important;
+      margin-bottom: 4rem !important;
+  }
+}
 .spinner-container{
   text-align: center;
 }
@@ -111,9 +117,11 @@ export default {
     color: white;
 }
 .calendar-header{
+    font-size: 4rem;
   font-family:var(--font-bold);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
+
 }
 .calendar-container{
   width: 80%;
