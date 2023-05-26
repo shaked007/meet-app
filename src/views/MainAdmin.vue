@@ -10,7 +10,7 @@
       size="90"
     ></v-progress-circular>
 </div>
-  <div class="knasim-flex" v-if="isAuthenticated && !knasim.length">
+  <div class="knasim-flex" v-if="isAuthenticated && knasim.length">
         <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
     </div> 
     <h3 v-if="isAuthenticated && !knasim.length">לא קיימים כנסים </h3>
