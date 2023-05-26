@@ -16,10 +16,10 @@
         </a>
   </nav> 
   <div v-if="$isMobile && isActive" class="mobile-flex"> 
-      <router-link :class="activeLink =='history'? 'chosen': '' " to="/admin/history"><span class="bi bi-archive"> </span> היסטוריית כנסים</router-link>
-      <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span class="bi bi-bell"> </span> בקשות ממתינות</router-link>
-          <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span class="bi bi-card-checklist"> </span>  רשימת בקשות</router-link>
-          <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span class="bi bi-calendar"> </span>  לוח כנסים</router-link>
+  <router-link :class="activeLink =='history'? 'chosen': '' " to="/admin/history"><span  :class="activeLink == 'history'  ? 'bi bi-funnel-fill' : 'bi bi-funnel' "> </span> היסטוריית כנסים</router-link>
+            <router-link :class="activeLink =='pending'? 'chosen': '' " to="/admin/pending"><span :class="activeLink=='pending' ? 'bi bi-bell-fill' : 'bi bi-bell' "> </span> בקשות ממתינות</router-link>
+                <router-link :class="activeLink =='requests'? 'chosen': ''" to="/admin"> <span :class="activeLink=='requests' ? 'bi bi-archive-fill' : 'bi bi-archive' "> </span>  רשימת כנסים</router-link>
+                 <router-link :class="activeLink =='board'? 'chosen': ''" to="/admin/board"> <span :class="activeLink=='board'?'bi bi-calendar-fill':'bi bi-calendar'"> </span>  לוח כנסים</router-link>
   </div>
 </template>
 

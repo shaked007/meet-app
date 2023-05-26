@@ -232,6 +232,7 @@ table thead{
     width: var(--width-tables);
 }
 table tbody{
+      overflow-x: hidden;
     display: block;
     width: var(--width-tables);
     overflow: auto;
