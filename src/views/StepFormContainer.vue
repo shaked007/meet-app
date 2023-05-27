@@ -116,7 +116,9 @@ export default {
     data(){
         return{
             postUrl:'/.netlify/functions/post_request',
-            mailUrl:'/.netlify/functions/send_email',
+            mailUrlClient:'/.netlify/functions/send_email_client',
+            mailUrlAdmin:'/.netlify/functions/send_email_admin',
+
             formData:{"1":"","2":'',"3":'','4':''},
             step:1
         }
@@ -148,17 +150,26 @@ export default {
         }
       })
 
-      if(postResponse.status== 200){
+      if(postResponse.status== 200 ){
           
-
-            const mailResponse = await axios.post(this.mailUrl,JSON.stringify({
+            if(this.formData['final']['contact-email'].trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+                       const mailClientResponse = await axios.post(this.mailUrlClient,JSON.stringify({
                     'contact-email':this.formData['final']['contact-email'],
                     'kenes-name':this.formData['general']['kenes-name'],
                     'megish':this.formData['tohen']['megish']['full-name'],
                     'id':postResponse.data.insertedId,
                     'submitted-date':moment(new Date(),'L', 'he').format("יום dddd  D/M/y")
             }))
-            if(mailResponse.status == 200){
+            }
+            const mailAdminResponse = await axios.post(this.mailUrlAdmin,JSON.stringify({
+                    'contact-email':this.formData['final']['contact-email'],
+                    'kenes-name':this.formData['general']['kenes-name'],
+                    'megish':this.formData['tohen']['megish']['full-name'],
+                    'id':postResponse.data.insertedId,
+                    'submitted-date':moment(new Date(),'L', 'he').format("יום dddd  D/M/y")
+            }))
+
+            if(mailAdminResponse.status == 200){
                 this.$swal.hideLoading()
                         this.$swal.close()
                             this.$refs.dialog.showModal()

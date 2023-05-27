@@ -1,11 +1,11 @@
-require('dotenv').config()
-const formData = require('form-data')
-
-const { MAILGUN_API_KEY,MAILGUN_USERNAME, MAILGUN_DOMAIN, MAILGUN_URL, FROM_EMAIL_ADDRESS, CONTACT_TO_EMAIL_ADDRESS } = process.env
-const Mailgun = require('mailgun.js')
-const mailgun = new Mailgun(formData)
-const mg = mailgun.client({ key: MAILGUN_API_KEY, username: 'api'})
-
+var elasticemail = require('elasticemail');
+const { promisify } = require('util');
+var client = elasticemail.createClient({
+  username: 'shakedbukai@gmail.com',
+  apiKey: '6300BB27D5A1A72D8833377C09A26B86B3192DE0EFE5FF05F2547D79ADD881608900A7253A01B1CC15C985C08BD091FE'
+});
+const sendEmail = promisify(client.mailer.send.bind(client.mailer));
+const emailAdmin = "shakedbukai@gmail.com"
 exports.handler = async (event) => {
   
   if (event.httpMethod !== 'POST') {
@@ -13,16 +13,28 @@ exports.handler = async (event) => {
   }
   
   const data = JSON.parse(event.body)
-  if (!data['kenes-name'] || !data['megish'] || !data['submitted-date'] || !data['contact-email'] ) {
-    return { statusCode: 422, body: 'kenes-name, megish,contact-email and submitted-date are required.' }
-  }
 
-  const mailgunData = {
-    from: 'mailgun <postmaster@sandbox2fd14c646f6f48538251a12ac63c2ef0.mailgun.org>',
-    to: "shakedbukai@gmail.com",
-    'h:Reply-To': 'linoy1234567@gmail.com',
-    subject: ` בקשה חדשה לכנס בוצעה על ידי ${data['megish']}` ,
-    html: `<!DOCTYPE html>
+const meetappIcon = ``;
+const tzameretIcon = ``;
+const beeIcon= ``;
+const beeFirstLink = ``;
+const beeSecondLink = ``;
+
+
+// const meetappIcon =`<img class="big" src="https://meet-app383.netlify.app/img/logo.a89e8ab6.png" style="display: block; height: auto; border: 0; width: 680px; max-width: 100%;" width="680">`
+// const tzameretIcon = `<img class="fullMobileWidth" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/383zameret.png" style="display: block; height: auto; border: 0; width: 136px; max-width: 100%;" width="136" alt="Polar bear sitting on tiny ice" title="Polar bear sitting on tiny ice">`
+// const beeIcon = `<img class="icon" alt="Designed with BEE" src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAgency/53601_510656/Signature/bee.png" height="32" width="34" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;">`
+const appLink = `<a href="https://meet-app383.netlify.app/#/kenes/pending/${data.id}" target="_blank" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#133c55;border-radius:4px;width:auto;border-top:1px solid #133C55;font-weight:undefined;border-right:1px solid #133C55;border-bottom:1px solid #133C55;border-left:1px solid #133C55;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word; line-height: 32px;">מעבר להזמנה</span></span></a>`
+// const beeFirstLink =`<a href="https://www.designedwithbee.com/" target="_blank" style="text-decoration: none;">${beeIcon} </a>`
+// const beeSecondLink =`<a href="https://www.designedwithbee.com/" target="_blank" style="color: #9d9d9d; text-decoration: none;">Designed with BEE</a>`
+
+  var msgToAdmin = {
+    from: 'meetapp383@gmail.com',
+    from_name: 'meetapp',
+    to: emailAdmin,
+    subject: `בקשה חדשה לכנס בוצעה על ידי ${data['megish']}` ,
+    // body_text:'נשלח בהצלחה!',
+    body_html: `<!DOCTYPE html>
     <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
     
     <head>
@@ -143,7 +155,7 @@ exports.handler = async (event) => {
                               <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                 <tr>
                                   <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                    <div class="alignment" align="center" style="line-height:10px"><img class="big" src="https://meet-app383.netlify.app/img/logo.a89e8ab6.png" style="display: block; height: auto; border: 0; width: 680px; max-width: 100%;" width="680"></div>
+                                    <div class="alignment" align="center" style="line-height:10px">${meetappIcon}</div>
                                   </td>
                                 </tr>
                               </table>
@@ -188,7 +200,9 @@ exports.handler = async (event) => {
                               <table class="button_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                 <tr>
                                   <td class="pad">
-                                    <div class="alignment" align="center"><!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="www.example.com" style="height:44px;width:131px;v-text-anchor:middle;" arcsize="10%" strokeweight="0.75pt" strokecolor="#133C55" fillcolor="#133c55"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]--><a href="www.example.com" target="_blank" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#133c55;border-radius:4px;width:auto;border-top:1px solid #133C55;font-weight:undefined;border-right:1px solid #133C55;border-bottom:1px solid #133C55;border-left:1px solid #133C55;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word; line-height: 32px;">מעבר להזמנה</span></span></a><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></div>
+                                    <div class="alignment" align="center"><!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="www.example.com" style="height:44px;width:131px;v-text-anchor:middle;" arcsize="10%" strokeweight="0.75pt" strokecolor="#133C55" fillcolor="#133c55"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]-->
+                                    ${appLink}
+                                    <!--[if mso]></center></v:textbox></v:roundrect><![endif]--></div>
                                   </td>
                                 </tr>
                               </table>
@@ -196,7 +210,9 @@ exports.handler = async (event) => {
                               <table class="image_block block-6" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                 <tr>
                                   <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                    <div class="alignment" align="center" style="line-height:10px"><img class="fullMobileWidth" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/383zameret.png" style="display: block; height: auto; border: 0; width: 136px; max-width: 100%;" width="136" alt="Polar bear sitting on tiny ice" title="Polar bear sitting on tiny ice"></div>
+                                    <div class="alignment" align="center" style="line-height:10px">
+                                   ${tzameretIcon}
+                                    </div>
                                   </td>
                                 </tr>
                               </table>
@@ -226,8 +242,12 @@ exports.handler = async (event) => {
                                           <!--[if !vml]><!-->
                                           <table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
                                             <tr>
-                                              <td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;"><a href="https://www.designedwithbee.com/" target="_blank" style="text-decoration: none;"><img class="icon" alt="Designed with BEE" src="https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAgency/53601_510656/Signature/bee.png" height="32" width="34" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></a></td>
-                                              <td style="font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 15px; color: #9d9d9d; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="https://www.designedwithbee.com/" target="_blank" style="color: #9d9d9d; text-decoration: none;">Designed with BEE</a></td>
+                                              <td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;">
+                                           ${beeFirstLink}
+                                              </td>
+                                              <td style="font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 15px; color: #9d9d9d; vertical-align: middle; letter-spacing: undefined; text-align: center;">
+                                              ${beeSecondLink}
+                                              </td>
                                             </tr>
                                           </table>
                                         </td>
@@ -252,13 +272,15 @@ exports.handler = async (event) => {
     
     </html>`
   }
-    console.log(mailgunData,MAILGUN_DOMAIN)
-  return mg.messages.create(MAILGUN_DOMAIN,mailgunData).then(() => ({
-    statusCode: 200,
-    body: "Your message was sent successfully! We'll be in touch."
-  })).catch(error => {
-    console.log(error)
-    console.log(error.message)
+ 
+
+ 
+  return  sendEmail(msgToAdmin).then(()=>{
+    return {
+      statusCode: 200,
+      body: "Your message was sent successfully! We'll be in touch."
+    }
+  }).catch(error => {
     return {
     statusCode: 422,
     body: ` processed data but got Error : ${error}`

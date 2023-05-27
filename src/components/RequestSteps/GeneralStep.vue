@@ -2,8 +2,7 @@
 <form method="GET" @submit.stop.prevent="submit" >
     <h5 ref="inputs"  v-if="!$isMobile">פרטים כלליים </h5>
     <div class="inputs-container" >  
-
-          <q-input  lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl" class="direction-class" label="גוף מוביל" />
+ <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="modelObject['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
                             <q-input lazy-rules="ondemand" :model-value=" modelObject.date.from == modelObject.date.to ? modelObject.date.from :modelObject.date.from+ '-'+ modelObject.date.to" :rules="typeSomethingRule" ref="date" :v-model="modelObject.date"    dir="rtl" no-error-icon placeholder=" בחר תאריך התחלה וסיום" >
 
         <template v-slot:prepend>
@@ -20,8 +19,10 @@
         </template>
       </q-input>
                     <q-input lazy-rules="ondemand" ref="location" v-model="modelObject.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
-                    <q-input lazy-rules="ondemand"  ref="kenes-name" v-model="modelObject['kenes-name']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="שם הכנס"  :error="false" />
-                                        <q-input  lazy-rules="ondemand" ref="top-level" v-model="modelObject['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
+                                                            <q-select     lazy-rules="ondemand" ref="top-level" v-model="modelObject['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות" :options="leaderOptions" :error="false" />
+
+         <q-input  lazy-rules="ondemand"  ref="leader"   :rules="typeSomethingRule" v-model="modelObject.leader" dir="rtl"   class="direction-class" label="גוף מוביל" />
+
       <q-select lazy-rules="ondemand"  :rules="typeSomethingRule" ref="secret-level" v-model="modelObject['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
         <div> 
             
@@ -83,7 +84,7 @@ export default {
     },
     data(){
         return{
-        
+        leaderOptions:['רח"ט מבצעים','ראש אכ"א','הרמטכ"ל','סגן הרמטכ"ל','רח"ט תוה"ד','ראש אג"ת','קשר"ר'],
             modelObject:{
                 leader:"",
                 date:'',
