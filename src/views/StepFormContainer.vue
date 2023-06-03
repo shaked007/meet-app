@@ -13,7 +13,7 @@
   <div class="flex-multi-form">
        <div class="form-carousel-container"> 
         <div class="wrapper-car"> 
-        <q-carousel
+        <q-carousel @keydown="handleKeyDown" 
         v-model="step"
         transition-prev="slide-right"
         animated
@@ -124,7 +124,12 @@ export default {
         }
     },
     methods:{
-    
+        handleKeyDown(event){
+            //fixed enter setback bug
+            if(event.keyCode === 13 && document.activeElement.tagName != 'BUTTON'){
+                event.preventDefault()
+            }
+        },
         returnToMain(){
             this.$router.push('/')
         },
