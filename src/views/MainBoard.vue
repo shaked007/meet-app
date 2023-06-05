@@ -106,6 +106,9 @@ export default {
 .spinner-container{
   text-align: center;
 }
+.fc-h-event .fc-event-title-container {
+  cursor: pointer !important;
+}
 
 .fc .fc-button .fc-icon {
     font-size: 1.5em;
