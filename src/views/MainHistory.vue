@@ -42,7 +42,7 @@
       <div > 
        <q-btn  flat  @click="cleanFilter" label="נקה סינון"  />
 
-     <q-btn :color="'blue'" @click="handleFilter" label="סינון" icon-right="edit" />
+     <q-btn style="background:var(--main-clr);" text-color="white" @click="handleFilter" label="סינון" icon-right="edit" />
       </div>
          </div>
 </div>
@@ -298,7 +298,7 @@ h1{
 }
   .link-to-report{
     display: inline-block;
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
     padding: 0.5em 1em;
     background-color: var(--main-clr);
     color: white;

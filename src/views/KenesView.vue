@@ -11,7 +11,7 @@
     <q-btn size="md" round @click="handleEdit" color="green"  icon="mdi-check" />
  </div>
  <div class="options-icons" v-if="isAuthenticated  && isFinished  && !isPendingView && !isEditing && $isMobile"  >
-       <q-btn size="md" round  color="blue" @click="handleEditStart"  icon="edit" />
+       <q-btn size="md" round  style="background:var(--main-clr);" text-color="white" @click="handleEditStart"  icon="edit" />
 
    </div>
  <footer v-if="isAuthenticated  && isFinished  && !isPendingView && isEditing && !$isMobile">
@@ -25,7 +25,7 @@
  <div v-if="!$isMobile && !isPendingView && isAuthenticated  && isFinished " class="edit-btn-container"> 
        <q-btn :disable="isEditing" flat  :color="isEditing ? 'grey':'black'" @click="print" label="הדפס" icon-right="print" />
 
-     <q-btn :disable="isEditing" :color="isEditing ? 'grey':'blue'" @click="handleEditStart" label="התחל עריכה" icon-right="edit" />
+     <q-btn :disable="isEditing"  style="background:var(--main-clr);" text-color="white"  @click="handleEditStart" label="התחל עריכה" icon-right="edit" />
 </div>
  <div class="spinner-class">
 

@@ -17,7 +17,7 @@
                                    <th> שם הכנס</th>
                               <th> תאריך הכנס</th>
                             <th> תאריך הבקשה</th>
-                            <th>  מגיש הבקשה</th>
+                            <!-- <th>  מגיש הבקשה</th> -->
                             <th> לבקשה המלאה</th>                         
 
                         </tr>
@@ -35,7 +35,7 @@
                               </td>
                               <td v-else> {{kenes.general.date.to}}  </td>
                               <td> {{kenes.date}} </td>
-                              <td> {{kenes.tohen.megish['full-name']}}</td>
+                              <!-- <td> {{kenes.tohen.megish['full-name']}}</td> -->
 
                             <td> <router-link class="link-to-report" :name="kenes._id" :to="'/kenes/pending/'+kenes['_id']">לצפייה </router-link></td>
                             <!-- <td>{{drive['driver']}} </td>
@@ -175,7 +175,7 @@ h1{
 }
   .link-to-report{
     display: inline-block;
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
     padding: 0.5em 1em;
     background-color: var(--main-clr);
     color: white;
