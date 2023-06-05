@@ -23,7 +23,7 @@
         
          </div>
            <q-input :borderless="isDisabled" :disable="isDisabled"  lazy-rules="ondemand" @update:model-value="updateParent" ref="location" v-model="generalModel.location" :rules="typeSomethingRule" type="textarea" outlined  dir="rtl" no-error-icon label="(מיקום (פרט עד רמת האולם"  :error="false" />
-                                                    <q-input :borderless="isDisabled" :disable="isDisabled"  @update:model-value="updateParent" lazy-rules="ondemand" ref="top-level" v-model="generalModel['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
+                                                    <q-select :options="leaderOptions" :borderless="isDisabled" :disable="isDisabled"  @update:model-value="updateParent" lazy-rules="ondemand" ref="top-level" v-model="generalModel['top-level']" :rules="typeSomethingRule"  dir="rtl" no-error-icon label="הכנס בראשות"  :error="false" />
       <q-select :borderless="isDisabled" :disable="isDisabled"  lazy-rules="ondemand"   @update:model-value="updateParent"   :rules="typeSomethingRule" ref="secret-level" v-model="generalModel['secret-level']" dir="rtl" :options="options" label='סיווג הכנס' />
   </div>
 </template>
@@ -33,16 +33,14 @@ export default {
     name:"generalCard",
     data(){
         return{
+          leaderOptions:['רח"ט מבצעים','ראש אכ"א','הרמטכ"ל','סגן הרמטכ"ל','רח"ט תוה"ד','ראש אג"ת','קשר"ר'],
                               options:['בלמ"ס','שמור',"סודי",'סד"ב'],
       
             generalModel:'',
         }
     },
     methods:{
-        func(){
-            console.log('2')
- 
-        },
+     
         handleRangeStart(){
     
             // this.$refs.edit.setEditingRange(0,0)

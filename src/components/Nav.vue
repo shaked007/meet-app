@@ -58,12 +58,14 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
-     font-size:2.3rem;
+     font-size:3rem;
      gap: 5px;
    
         color: white;
   }
   .mobile-flex a{
+      direction: rtl !important;
+
        padding: 5px 20px;
       border-radius: 20px;
      color: white;
