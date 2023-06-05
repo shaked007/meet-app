@@ -31,7 +31,7 @@
          </div>
        <div  class="flex-item" > 
 
-              <q-select  lazy-rules="ondemand" value='כולם'    ref="secret-level" v-model="filterModel['leader']" dir="rtl" :options="options" label='מוביל הכנס' />
+              <q-select  lazy-rules="ondemand" value='כולם'    ref="secret-level" v-model="filterModel['top-level']" dir="rtl" :options="options" label='מוביל הכנס' />
       </div>
        </div>    <div class="flex-btns-and-categories">
 
@@ -74,7 +74,7 @@
                     <thead>
                         <tr>
                                    <th> שם הכנס</th>
-                                     <th>מוביל הכנס </th>
+                                     <th> הכנס ברשות</th>
 
                               <th> תאריך הכנס</th>
                             <th> לבקשה המלאה</th>                         
@@ -85,7 +85,7 @@
                         <tr v-for="kenes in knasim" :key="kenes['_id']">
              
                                                             <td >{{kenes.general['kenes-name']}} </td>
-                                                            <td> {{kenes.general['leader']}}</td>
+                                                            <td> {{kenes.general['top-level']}}</td>
                               <td v-if="kenes.general.date.to  != kenes.general.date.from">     {{kenes.general.date.to}} - {{kenes.general.date.from}} 
                               </td>
                               <td v-else> {{kenes.general.date.to}}  </td>
@@ -96,9 +96,7 @@
                     </tbody>
                                     </table>
         <h3 v-if="isAuthenticated && !knasim.length"> לא קיימים כנסים כרגע</h3>
-  <!-- <div class="knasim-flex" v-if="isAuthenticated">
-        <KenesCard v-for="kenes in knasim" :kenesLocation="kenes.general.location" :kenesId="kenes._id" :kenesDate="kenes.general.date" :kenesLeader="kenes.general.leader" :kenesName="kenes.general['kenes-name']"   :key="kenes._id" />
-    </div>  -->
+
 </template>
 
 <script>
@@ -113,7 +111,7 @@ export default {
 
       isAuthenticated:false,
       allKnasimBackup:[],
-      filterModel:{date:'',kenesName:'',leader:'כולם'},
+      filterModel:{date:'',kenesName:'','top-level':'כולם'},
     deleteUrl:"/.netlify/functions/delete_report",
       updateUrl:"/.netlify/functions/update_report",
       getAuthorized:'/.netlify/functions/fetch_authorized',
@@ -162,9 +160,9 @@ export default {
     handleFilter(){
       this.knasim = this.knasim.filter((kenes)=>{
         const fitlerName =  kenes.general['kenes-name'].includes(this.filterModel.kenesName.trim()) 
-        const filterLeader = kenes.general.leader == this.filterModel.leader || this.filterModel.leader =='כולם'
+        const filterTopLevel = kenes.general['top-level'] == this.filterModel['top-level'] || this.filterModel['top-level'] =='כולם'
         const filterDates  = this.isBetweenDates(kenes.general.date)
-        return  fitlerName && filterLeader && filterDates
+        return  fitlerName && filterTopLevel && filterDates
 
       })
     },
@@ -177,7 +175,7 @@ export default {
         },
     cleanFilter(){
         this.filterModel.date=''
-        this.filterModel.leader='כולם'
+        this.filterModel['top-level']='כולם'
         this.filterModel.kenesName=''
         this.knasim = [...this.allKnasimBackup]
     },
