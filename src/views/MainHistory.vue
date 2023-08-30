@@ -307,7 +307,8 @@ h1{
 }
 
 table thead{
-  display: block;
+  
+  display: block !important;
     width: var(--width-tables);
 }
 table tbody{
